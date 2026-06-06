@@ -1,0 +1,20 @@
+/* 調整地圖暗色濾鏡，符合網頁整體寂靜風調性 */
+.leaflet-layer, .leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+body { 
+    background-color: #121212; 
+    color: #E5E5E5; 
+    font-family: sans-serif; 
+}
+
+/* 自訂捲軸樣式 */
+::-webkit-scrollbar { 
+    width: 6px; 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: #333; 
+    border-radius: 3px; 
+}

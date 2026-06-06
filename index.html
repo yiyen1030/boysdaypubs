@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>東門圓環深夜微醺地圖</title>
-    <!-- Tailwind CSS (用於快速建構極簡深色介面) -->
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Leaflet.js CSS (地圖套件) -->
+    <!-- Leaflet.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        /* 調整地圖暗色濾鏡，符合網頁整體寂靜風調性 */
-        .leaflet-layer, .leaflet-control-zoom-in, .leaflet-control-zoom-out {
-            filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
-        }
-        body { background-color: #121212; color: #E5E5E5; font-family: sans-serif; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-    </style>
+    <!-- 自訂外部樣式表 -->
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 <body class="h-screen flex flex-col md:flex-row overflow-hidden">
 
@@ -33,21 +26,20 @@
 
         <!-- 餐廳列表區區塊 -->
         <div class="flex-1 overflow-y-auto p-4 space-y-3" id="restaurant-list">
-            <!-- 記憶體動態渲染卡片 -->
+            <p class="text-xs text-zinc-500 p-4">資料載入中...</p>
         </div>
 
-        <!-- 底部吸附：行程購物車 (2-3間餐廳) -->
+        <!-- 底部吸附：行程購物車 -->
         <div class="p-4 bg-zinc-900 border-t border-zinc-800 flex-shrink-0">
             <div class="flex justify-between items-center mb-3">
                 <span class="text-xs text-zinc-400 tracking-wider">今晚行程 (<span id="cart-count">0</span>/3)</span>
                 <button onclick="clearCart()" class="text-xs text-zinc-500 hover:text-zinc-300 transition">清空</button>
             </div>
             <div id="cart-items" class="flex gap-2 mb-3 min-h-[32px] overflow-x-auto pb-1 text-xs">
-                <!-- 顯示已選擇的店名小標籤 -->
                 <p class="text-zinc-600 self-center">尚未選擇店家，請從上方列表中加入...</p>
             </div>
             <button id="route-btn" disabled onclick="generateRoute()" 
-                    class="w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm transition-all duration-300 cursor-not-allowed">
+                    class="w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm cursor-not-allowed transition-all duration-300">
                 請先選擇 2-3 間餐廳
             </button>
         </div>
@@ -58,217 +50,7 @@
 
     <!-- Leaflet.js JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // 1. 核心資料集（先挑選 8 間作為核心示範，可自行依此結構擴充至 20 間）
-        const places = [
-            { id: 1, name: "Bar Alter", type: "酒吧", dist: "650m", addr: "台南市東區東門路一段22號", lat: 22.9892, lng: 120.2148, desc: "寂靜寂風老宅酒吧。將在地日常飲食風味（如一農虱目魚、旗魚鬆）融入調酒與小食。" },
-            { id: 2, name: "在島之後 After Island", type: "餐酒館", dist: "1.2km", addr: "台南市東區東寧路201巷121號", lat: 22.9934, lng: 120.2241, desc: "隱身東寧路巷弄綠意老宅。主打精緻義法料理與層次細緻的特色茶酒，氛圍極佳。" },
-            { id: 3, name: "Bar Home", type: "餐酒館", dist: "1.5km", addr: "台南市中西區中山路23巷1號", lat: 22.9945, lng: 120.2078, desc: "TCRC二店。與私廚團隊合作，提供虱目魚泡芙、頂級歐陸料理與頂尖客製化調酒。" },
-            { id: 4, name: "家根創意酒肴 - 大同店", type: "居酒屋", dist: "1.2km", addr: "台南市東區大同路二段257號", lat: 22.9795, lng: 120.2152, desc: "美式工業風日式居酒屋。主打野生魚料、串燒肉與重口味創意下酒菜，適合大口喝生啤。" },
-            { id: 5, name: "LATE Bistro 暮餐酒館", type: "餐酒館", dist: "200m", addr: "台南市東區東門路一段12號", lat: 22.9895, lng: 120.2125, desc: "緊鄰東門圓環。從傍晚一路營業至深夜，主打精緻異國料理、義大利麵與多變特調。" },
-            { id: 6, name: "泉發酒吧 Chuanfa Bar", type: "酒吧", dist: "200m", addr: "台南市東區東門路一段10巷10號3樓", lat: 22.9898, lng: 120.2128, desc: "比利時老闆開的復古老宅酒吧。位於福德爺廟旁民宅3樓，空間寬敞，特調極具個性。" },
-            { id: 7, name: "Moonrock", type: "酒吧", dist: "1.3km", addr: "台南市北區成功路22巷42弄13號", lat: 22.9972, lng: 120.2115, desc: "世界50最佳酒吧之一。瀰漫優雅現代孤寂感，調酒風味細緻如香水，內行酒客必訪。" },
-            { id: 8, name: "榕洋行 Ron & Company", type: "酒吧", dist: "1.4km", addr: "台南市中西區開山路29巷24號", lat: 22.9905, lng: 120.2052, desc: "三層樓老洋行複合空間。二樓為大人味爵士俱樂部，調酒大量運用台灣在地水果與紫蘇。" }
-        ];
-
-        let selectedCart = []; // 儲存選中店家的 Array (最多3間)
-        let map, markersGroup;
-
-        // 2. 初始化地圖 (中心點設在台南東門圓環：22.9895, 120.2122)
-        function initMap() {
-            map = L.map('map', { zoomControl: false }).setView([22.9895, 120.2122], 15);
-            L.control.zoom({ position: 'topright' }).addTo(map);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-            markersGroup = L.layerGroup().addTo(map);
-
-            // 標記東門圓環中心點
-            L.circleMarker([22.9895, 120.2122], {
-                radius: 8,
-                fillColor: "#f59e0b",
-                color: "#fff",
-                weight: 2,
-                opacity: 1,
-                fillOpacity: 0.8
-            }).addTo(map).bindPopup("<b>東門圓環中心</b>");
-
-            // 渲染所有店家地標
-            renderMarkers();
-        }
-
-        // 3. 在地圖上繪製所有店家的 Marker
-        function renderMarkers() {
-            markersGroup.clearLayers();
-            places.forEach(place => {
-                const isSelected = selectedCart.some(item => item.id === place.id);
-                // 如果被選中，改用亮橘色標記，否則用低調的灰色
-                const markerColor = isSelected ? '#f59e0b' : '#71717a';
-
-                const customMarker = L.circleMarker([place.lat, place.lng], {
-                    radius: 7,
-                    fillColor: markerColor,
-                    color: '#18181b',
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.9
-                });
-
-                customMarker.bindPopup(`
-                    <div class="text-zinc-900 p-1">
-                        <strong class="text-sm">${place.name}</strong><br>
-                        <span class="text-xs text-amber-700 font-bold">[${place.type}] 距離圓環 ${place.dist}</span>
-                    </div>
-                `);
-                markersGroup.addLayer(customMarker);
-            });
-        }
-
-        // 4. 渲染左側餐廳清單 UI
-        function renderList() {
-            const listContainer = document.getElementById('restaurant-list');
-            listContainer.innerHTML = '';
-
-            places.forEach(place => {
-                const isSelected = selectedCart.some(item => item.id === place.id);
-                
-                const card = document.createElement('div');
-                card.className = `p-4 rounded border transition-all duration-200 cursor-pointer ${
-                    isSelected 
-                    ? 'bg-zinc-900/80 border-amber-500/50 shadow-md shadow-amber-500/5' 
-                    : 'bg-zinc-900/30 border-zinc-900 hover:border-zinc-800'
-                }`;
-                
-                // 點擊卡片地圖會自動移過去並打開 Popup
-                card.onclick = (e) => {
-                    if(e.target.tagName !== 'BUTTON') {
-                        map.panTo([place.lat, place.lng]);
-                        // 找出對應的 marker 並打開 popup
-                        markersGroup.eachLayer(layer => {
-                            if(layer.getLatLng().lat === place.lat && layer.getLatLng().lng === place.lng) {
-                                layer.openPopup();
-                            }
-                        });
-                    }
-                };
-
-                card.innerHTML = `
-                    <div class="flex justify-between items-start gap-2">
-                        <div>
-                            <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium tracking-wider rounded bg-zinc-800 text-zinc-400 mb-1.5">${place.type}</span>
-                            <h3 class="text-sm font-medium text-zinc-200">${place.name}</h3>
-                            <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${place.dist} | ${place.addr}</p>
-                        </div>
-                        <button onclick="toggleCart(${place.id}); event.stopPropagation();" 
-                                class="text-xs px-2.5 py-1 rounded transition border ${
-                                    isSelected 
-                                    ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20' 
-                                    : 'border-zinc-800 text-zinc-400 hover:bg-zinc-800'
-                                }">
-                            ${isSelected ? '✓ 已加入' : '+ 行程'}
-                        </button>
-                    </div>
-                    <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${place.desc}</p>
-                `;
-                listContainer.appendChild(card);
-            });
-        }
-
-        // 5. 控制行程購物車的加入與刪除
-        function toggleCart(id) {
-            const place = places.find(p => p.id === id);
-            const index = selectedCart.findIndex(item => item.id === id);
-
-            if (index > -1) {
-                // 已存在，則移除
-                selectedCart.splice(index, 1);
-            } else {
-                // 不存在，上限 3 間
-                if (selectedCart.length >= 3) {
-                    alert("為了維持微醺散步的品質，一晚建議安排 2-3 間店就好囉！");
-                    return;
-                }
-                selectedCart.push(place);
-            }
-
-            updateCartUI();
-            renderList();
-            renderMarkers();
-        }
-
-        // 6. 清空購物車
-        function clearCart() {
-            selectedCart = [];
-            updateCartUI();
-            renderList();
-            renderMarkers();
-        }
-
-        // 7. 更新底部購物車區塊的 UI
-        function updateCartUI() {
-            document.getElementById('cart-count').innerText = selectedCart.length;
-            const cartItemsContainer = document.getElementById('cart-items');
-            const routeBtn = document.getElementById('route-btn');
-
-            if (selectedCart.length === 0) {
-                cartItemsContainer.innerHTML = `<p class="text-zinc-600 self-center">尚未選擇店家，請從上方列表中加入...</p>`;
-                routeBtn.disabled = true;
-                routeBtn.className = "w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm cursor-not-allowed";
-                routeBtn.innerText = "請先選擇 2-3 間餐廳";
-            } else {
-                cartItemsContainer.innerHTML = selectedCart.map(item => `
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">
-                        ${item.name}
-                        <span onclick="toggleCart(${item.id})" class="text-zinc-500 hover:text-zinc-300 cursor-pointer font-bold ml-1">×</span>
-                    </span>
-                `).join('');
-
-                if (selectedCart.length >= 2) {
-                    routeBtn.disabled = false;
-                    routeBtn.className = "w-full py-3 rounded bg-amber-500 text-zinc-950 font-semibold tracking-widest text-sm hover:bg-amber-400 active:scale-[0.99] transition-all cursor-pointer shadow-lg shadow-amber-500/10";
-                    routeBtn.innerText = "⚡ 產生今晚微醺路線 (開啟 Google Maps)";
-                } else {
-                    routeBtn.disabled = true;
-                    routeBtn.className = "w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm cursor-not-allowed";
-                    routeBtn.innerText = "請再選擇 1 間店家";
-                }
-            }
-        }
-
-        // 8. 核心邏輯：動態拼裝 Google Maps Universal URL 並開啟導航
-        function generateRoute() {
-            if (selectedCart.length < 2) return;
-
-            const baseUrl = "https://www.google.com/maps/dir/?api=1";
-            
-            // 起點：第一家店
-            const origin = encodeURIComponent(selectedCart[0].addr);
-            // 終點：最後一家店
-            const destination = encodeURIComponent(selectedCart[selectedCart.length - 1].addr);
-            
-            // 中途停靠點 (如果有選第 2 家，且總數達 3 家)
-            let waypointsParam = "";
-            if (selectedCart.length === 3) {
-                waypointsParam = `&waypoints=${encodeURIComponent(selectedCart[1].addr)}`;
-            }
-
-            // 設定移動模式為步行 (walking)
-            const travelMode = "&travelmode=walking";
-
-            // 完整 URL 拼接
-            const finalMapUrl = `${baseUrl}&origin=${origin}&destination=${destination}${waypointsParam}${travelMode}`;
-
-            // 新視窗/新分頁開啟（手機上會直接喚醒 Google Maps App）
-            window.open(finalMapUrl, '_blank');
-        }
-
-        // 網頁載入完成後初始化
-        window.onload = () => {
-            initMap();
-            renderList();
-        };
-    </script>
+    <!-- 自訂外部邏輯腳本 -->
+    <script src="js/script.js"></script>
 </body>
 </html>
