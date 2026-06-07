@@ -53,22 +53,23 @@ function renderMarkers() {
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
         
-        // 核心色彩逆向計算（配合網頁 invert 濾鏡）：
-        // 1. 選中時：維持原本好看的琥珀橘 (#f59e0b)
-        // 2. 預設推薦點：使用 #22c55e (綠色)，經過網頁濾鏡反轉後，就會在畫面上呈現出最完美的粉紅色！
-        const markerColor = isSelected ? '#f59e0b' : '#22c55e';
+        // 核心色彩逆向計算（配合網頁反轉濾鏡）：
+        // 1. 選中時：維持琥珀橘 (#f59e0b)
+        // 2. 預設推薦點：使用 #135c62，經過暗色濾鏡反轉後，就會在畫面上呈現出完美的柔和粉紅色 (#eca39d)！
+        const markerColor = isSelected ? '#f59e0b' : '#135c62';
 
-        // 徹底捨棄 L.marker，只使用純幾何圓圈 L.circleMarker，這樣地圖上就絕對不會出現任何 + 號
-        const circle = L.circleMarker([place.lat, place.lng], {
-            radius: 6.5,         // 稍微放大一點點，讓粉紅色圓點更清晰好看
+        // 徹底放棄 L.marker 或 L.circleMarker，改用純 SVG 渲染的 L.circle
+        // 這樣可以 100% 繞過 Leaflet 的 Icon 樣式，根除所有粉紅十字 + 號！
+        const circle = L.circle([place.lat, place.lng], {
+            radius: 12,          // L.circle 的單位是公尺，12 公尺在畫面上大小最精緻
             fillColor: markerColor,
-            color: '#121212',    // 深黑邊框，讓圓點邊緣乾淨不刺眼
-            weight: 1.5,
+            color: '#121212',    // 框線顏色
+            weight: 2,
             opacity: 1,
-            fillOpacity: 0.95    // 提高不透明度，讓顏色飽滿
+            fillOpacity: 0.9
         });
 
-        // 直接將彈出視窗綁定在圓圈上
+        // 將彈出視窗直接綁定在乾淨的圓圈上
         circle.bindPopup(`
             <div class="text-zinc-900 p-1">
                 <strong class="text-sm">${place.name}</strong><br>
@@ -76,10 +77,11 @@ function renderMarkers() {
             </div>
         `);
 
-        // 將乾淨的圓點加入圖層
+        // 將圓圈加入地圖圖層
         markersGroup.addLayer(circle);
     });
 }
+
 // 4. 渲染左側餐廳清單 UI
 function renderList() {
     const listContainer = document.getElementById('restaurant-list');
