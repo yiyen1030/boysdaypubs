@@ -4,7 +4,8 @@ let map, markersGroup;
 
 // 1. 初始化地圖 (中心點設在台南東門圓環：22.9895, 120.2122)
 function initMap() {
-    map = L.map('map', { zoomControl: false }).setView([22.9895, 120.2122], 15);
+    const centerLoc = [22.9871127557145, 120.21744023645061];
+    map = L.map('map', { zoomControl: false }).setView(centerLoc, 15);
     L.control.zoom({ position: 'topright' }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -14,14 +15,14 @@ function initMap() {
     markersGroup = L.layerGroup().addTo(map);
 
     // 標記東門圓環中心點
-    L.circleMarker([22.9895, 120.2122], {
+    L.circleMarker(centerLoc, {
         radius: 8,
         fillColor: "#f59e0b",
         color: "#fff",
         weight: 2,
         opacity: 1,
         fillOpacity: 0.8
-    }).addTo(map).bindPopup("<b>東門圓環中心</b>");
+    }).addTo(map).bindPopup("<b>臺灣府城-東門城</b>");
 }
 
 // 2. 使用 Fetch API 非同步讀取 data.json
