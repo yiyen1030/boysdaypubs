@@ -52,15 +52,18 @@ function renderMarkers() {
     markersGroup.clearLayers();
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
-        const markerColor = isSelected ? '#f59e0b' : '#71717a';
+        
+        // 【顏色調整】選中時維持琥珀橘，未選中（預設）時改為醒目的粉紅色
+        const markerColor = isSelected ? '#f59e0b' : '#ff6b8b';
 
+        // 使用 L.circleMarker 繪製極簡圓點（徹底擺脫預設的十字標問題）
         const customMarker = L.circleMarker([place.lat, place.lng], {
-            radius: 7,
+            radius: 6.5,         // 稍微放大一點點圓點，讓粉紅色更好看
             fillColor: markerColor,
-            color: '#18181b',
-            weight: 1,
+            color: '#121212',    // 邊框使用與背景相同的深黑色，讓圓點邊緣更乾淨
+            weight: 1.5,
             opacity: 1,
-            fillOpacity: 0.9
+            fillOpacity: 0.95    // 稍微提高不透明度，讓粉紅與橘色在暗色地圖上更跳
         });
 
         customMarker.bindPopup(`
