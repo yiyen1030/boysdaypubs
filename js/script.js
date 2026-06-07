@@ -53,23 +53,23 @@ function renderMarkers() {
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
         
-        // 核心色彩逆向計算（配合網頁反轉濾鏡）：
-        // 1. 選中時：維持琥珀橘 (#f59e0b)
-        // 2. 預設推薦點：使用 #135c62，經過暗色濾鏡反轉後，就會在畫面上呈現出完美的柔和粉紅色 (#eca39d)！
-        const markerColor = isSelected ? '#f59e0b' : '#135c62';
+        // 既然底圖沒有套用反轉濾鏡，我們直接使用你指定的正確顏色：
+        // 1. 選中時：維持亮眼的琥珀橘 (#f59e0b)
+        // 2. 預設推薦點：直接使用你最想要的溫柔粉紅色 (#eca39d)
+        const markerColor = isSelected ? '#f59e0b' : '#eca39d';
 
-        // 徹底放棄 L.marker 或 L.circleMarker，改用純 SVG 渲染的 L.circle
-        // 這樣可以 100% 繞過 Leaflet 的 Icon 樣式，根除所有粉紅十字 + 號！
-        const circle = L.circle([place.lat, place.lng], {
-            radius: 12,          // L.circle 的單位是公尺，12 公尺在畫面上大小最精緻
+        // 使用 L.circleMarker (SVG 渲染)，並將半徑放大到 9
+        // 這樣不僅視覺上更清晰、好點擊，還能完美遮蓋住底圖上原本內建的十字符號！
+        const circle = L.circleMarker([place.lat, place.lng], {
+            radius: 9,           // 放大半徑，完美遮罩底圖雜訊
             fillColor: markerColor,
-            color: '#121212',    // 框線顏色
+            color: '#121212',    // 深色邊框，讓粉紅圓點立體感更強
             weight: 2,
             opacity: 1,
-            fillOpacity: 0.9
+            fillOpacity: 0.95    // 提高不透明度，確保底圖的 + 號不會透出來
         });
 
-        // 將彈出視窗直接綁定在乾淨的圓圈上
+        // 將彈出視窗直接綁定在圓圈上
         circle.bindPopup(`
             <div class="text-zinc-900 p-1">
                 <strong class="text-sm">${place.name}</strong><br>
@@ -77,7 +77,7 @@ function renderMarkers() {
             </div>
         `);
 
-        // 將圓圈加入地圖圖層
+        // 將乾淨的圓點加入圖層
         markersGroup.addLayer(circle);
     });
 }
