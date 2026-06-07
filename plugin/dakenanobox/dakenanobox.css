@@ -1,0 +1,312 @@
+/* ==========================================================
+   NanoBox v1.1.0  —  樣式檔
+   你可以直接修改這份 CSS 來客製化 lightbox 外觀。
+   所有選擇器都以 #nanobox- 或 .nb- 開頭，不會污染全域。
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   1. 遮罩背景
+      #nanobox-overlay
+   ---------------------------------------------------------- */
+#nanobox-overlay {
+  position: fixed;
+  inset: 0;                          /* top/right/bottom/left: 0 */
+
+  /* 黑色半透明背景 — 調整最後的數字 (0~1) 改變透明度 */
+  background: rgba(0, 0, 0, 0.72);
+
+  display: flex;
+  align-items: center;               /* 垂直置中視窗 */
+  justify-content: center;           /* 水平置中視窗 */
+
+  /* 開場動畫：從透明淡入 */
+  opacity: 0;
+  transition: opacity var(--nb-dur, 280ms) ease;
+
+  /* 背景模糊效果（不需要可刪除這兩行） */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* 加上此 class 後視窗才會顯示（由 JS 控制） */
+#nanobox-overlay.nb-visible {
+  opacity: 1;
+}
+
+
+/* ----------------------------------------------------------
+   2. 彈出視窗容器
+      #nanobox-modal
+      尺寸由 JS 透過 CSS 變數傳入，可在此 override。
+   ---------------------------------------------------------- */
+#nanobox-modal {
+  position: relative;
+
+  /* 寬高：JS 傳入的 CSS 變數，後面是沒有變數時的備用值 */
+  width:     var(--nb-w,   50vw);
+  max-width: var(--nb-mxw, 760px);
+  min-width: var(--nb-mnw, 320px);
+  height:    var(--nb-h,   90vh);
+
+  background: #ffffff;               /* 視窗底色 */
+  border-radius: 15px;               /* 圓角 */
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  /* 陰影 */
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+
+  /* 開場動畫：從略微偏下 + 縮小 → 彈回原位 */
+  transform: translateY(28px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform var(--nb-dur, 280ms) cubic-bezier(0.34, 1.36, 0.64, 1),
+    opacity   var(--nb-dur, 280ms) ease;
+}
+
+/* 顯示時恢復正常位置與透明度 */
+#nanobox-overlay.nb-visible #nanobox-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+
+/* ----------------------------------------------------------
+   3. 標題列（含標題文字 + 關閉按鈕）
+      #nanobox-header
+   ---------------------------------------------------------- */
+#nanobox-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 3px 8px 0 16px;
+  height: 44px;
+  min-height: 44px;                  /* 防止被壓縮 */
+
+  /*border-bottom: 1px solid #e5e7eb;  /* 分隔線顏色 */
+  /*background: #f9fafb;               /* 標題列底色 */
+
+  flex-shrink: 0;                    /* 高度固定，不隨視窗縮小 */
+}
+
+
+/* ----------------------------------------------------------
+   4. 標題文字
+      #nanobox-title
+   ---------------------------------------------------------- */
+#nanobox-title {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;           /* 過長時顯示 … */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding-top: .5rem;
+}
+
+
+/* ----------------------------------------------------------
+   5. 關閉按鈕（右上角 ✕）
+      #nanobox-close
+   ---------------------------------------------------------- */
+#nanobox-close {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: #ededed;
+  /*background: transparent;*/
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #6b7280;                    /* 圖示顏色 */
+  flex-shrink: 0;
+  padding: 0;
+
+  transition: background 0.15s, color 0.15s;
+}
+
+/* hover 狀態 */
+#nanobox-close:hover {
+  /*background: #fee2e2;               /* hover 背景色（淡紅） */
+  /*color: #dc2626;                    /* hover 圖示色（紅） */
+  background: #343a40;
+  color: #fff;
+}
+
+/* 讓 svg 不擋住點擊事件 */
+#nanobox-close svg {
+  pointer-events: none;
+}
+
+
+/* ----------------------------------------------------------
+   6. 載入中遮罩（iframe 尚未載入完成時顯示）
+      #nanobox-loader
+   ---------------------------------------------------------- */
+#nanobox-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;               /* loader 底色（與視窗底色相同） */
+  z-index: 1;
+  transition: opacity 0.2s;
+}
+
+/* iframe 載入完成後 JS 會加上此 class 讓 loader 消失 */
+#nanobox-loader.nb-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ----------------------------------------------------------
+   7. 載入中 Spinner 動畫
+      .nb-spinner
+   ---------------------------------------------------------- */
+.nb-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e5e7eb;         /* 圓圈底色 */
+  border-top-color: #6366f1;         /* 旋轉頭部顏色 */
+  border-radius: 50%;
+  animation: nb-spin 0.7s linear infinite;
+}
+
+@keyframes nb-spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ----------------------------------------------------------
+   8. iframe 主體
+      #nanobox-iframe
+   ---------------------------------------------------------- */
+#nanobox-iframe {
+  flex: 1;                           /* 填滿視窗剩餘高度 */
+  border: none;
+  width: 100%;
+  display: block;
+  background: #ffffff;
+}
+
+
+/* ----------------------------------------------------------
+   9. 手機版 RWD（螢幕寬度 ≤ 600px）
+      仿 Google Maps bottom sheet：由下往上滑入
+      - 滿版寬度，貼住螢幕底部
+      - 上方留空間（可看到遮罩），上方兩側大圓角
+      - 下方不留白，完全貼底（含 iPhone safe area）
+   ---------------------------------------------------------- */
+@media (max-width: 600px) {
+
+  /* overlay 改為靠底對齊，不再置中 */
+  #nanobox-overlay {
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  /* 視窗：滿版寬、貼底、上方大圓角、下方無圓角 */
+  #nanobox-modal {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+
+    /* 上方留一段空間讓遮罩透出來（調整此值改變視窗高度） */
+    /* dvh 不支援時 fallback 到 svh，再 fallback 到 calc */
+    height: calc(100vh - 60px) !important;           /* 舊瀏覽器 fallback */
+    height: calc(100svh - 60px) !important;          /* svh：工具列展開時的高度 */
+    height: calc(100dvh - 60px) !important;          /* dvh：動態，優先採用 */
+
+    /* 上方兩側大圓角，下方貼底（設為 0） */
+    border-radius: 30px 30px 0 0 !important;
+
+    /* 延伸到 iPhone home indicator 區域，完全貼底 */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+
+    /* 關閉陰影（貼底時陰影無意義） */
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18);
+
+    /* 手機動畫：從畫面底部外側滑入，取代桌機的縮放效果 */
+    transform: translateY(100%) !important;
+    opacity: 1 !important;            /* 手機版不用淡入，只做位移 */
+    transition:
+      transform var(--nb-dur, 280ms) cubic-bezier(0.32, 0.72, 0, 1) !important;
+  }
+
+  /* 顯示時：滑回原位 */
+  #nanobox-overlay.nb-visible #nanobox-modal {
+    transform: translateY(0) !important;
+  }
+
+  /* 標題列加上拖曳把手（pill handle），更有 native 感 */
+  #nanobox-header {
+    position: relative;
+    /*padding-top: 10px;                /* 讓 handle 有空間 */
+    padding-right: 9px;
+    height: 50px;
+    min-height: 50px;
+  }
+
+  /* handle 本體：用偽元素畫在 header 頂部中央 */
+  #nanobox-header::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: #d1d5db;             /* handle 顏色，可自行調整 */
+  }
+}
+
+
+/* ==========================================================
+   ── 客製化範例 ──────────────────────────────────────────
+
+   深色主題：
+   #nanobox-modal    { background: #1e1e2e; }
+   #nanobox-header   { background: #181825; border-bottom-color: #313244; }
+   #nanobox-title    { color: #cdd6f4; }
+   #nanobox-close    { color: #a6adc8; }
+   #nanobox-close:hover { background: #45475a; color: #f38ba8; }
+   #nanobox-loader   { background: #1e1e2e; }
+   .nb-spinner       { border-color: #313244; border-top-color: #89b4fa; }
+   #nanobox-iframe   { background: #1e1e2e; }
+
+   無圓角（四方形）：
+   #nanobox-modal  { border-radius: 0; }
+   #nanobox-close  { border-radius: 0; }
+
+   更大視窗：
+   #nanobox-modal  { --nb-w: 80vw; --nb-mxw: 1200px; --nb-h: 90vh; }
+
+   調整手機版視窗高度（預設上方留 60px）：
+   @media (max-width: 600px) {
+     #nanobox-modal { height: calc(100vh - 100px) !important; }
+   }
+
+   調整手機版拖曳 handle 顏色：
+   @media (max-width: 600px) {
+     #nanobox-header::before { background: #9ca3af; }
+   }
+
+   隱藏標題列（只保留關閉按鈕）：
+   #nanobox-title  { display: none !important; }
+
+   更深的遮罩：
+   #nanobox-overlay { background: rgba(0, 0, 0, 0.88); }
+   ========================================================== */

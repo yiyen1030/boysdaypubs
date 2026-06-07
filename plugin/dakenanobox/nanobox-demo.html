@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NanoBox 示範</title>
+
+<!-- 1. 引入樣式 -->
+<link rel="stylesheet" href="nanobox.css">
+<!-- 2. 引入套件 -->
+<script src="nanobox.js"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 580px;
+    width: 100%;
+    box-shadow: 0 4px 24px rgba(0,0,0,.08);
+  }
+  h1 { font-size: 20px; color: #111827; margin-bottom: .5rem; }
+  p  { font-size: 14px; color: #6b7280; line-height: 1.6; margin-bottom: 1.5rem; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem; }
+  .btn {
+    padding: 9px 18px; border-radius: 8px; border: none;
+    cursor: pointer; font-size: 14px; font-weight: 500;
+    transition: filter .15s; text-decoration: none; display: inline-block;
+  }
+  .btn:hover { filter: brightness(.9); }
+  .btn-indigo { background: #6366f1; color: #fff; }
+  .btn-blue   { background: #3b82f6; color: #fff; }
+  .btn-gray   { background: #e5e7eb; color: #374151; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+  pre {
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+    padding: 1rem; font-size: 12.5px; line-height: 1.8;
+    overflow-x: auto; color: #334155; margin-bottom: 1rem;
+  }
+  .label {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    background: #ede9fe; color: #5b21b6;
+    border-radius: 4px; padding: 2px 8px; margin-bottom: .5rem;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🪄 NanoBox 示範</h1>
+  <p>將 <code>nanobox.js</code> 和 <code>nanobox.css</code> 放在同一個目錄，然後按照下面的方式使用。</p>
+
+  <div class="btn-group">
+    <!-- HTML 屬性綁定（頁面載入後自動生效） -->
+    <a href="https://www.wikipedia.org/wiki/Taiwan"
+       data-nanobox
+       data-nanobox-title="Wikipedia"
+       class="btn btn-indigo">
+      屬性綁定開啟
+    </a>
+
+    <!-- JS 呼叫 -->
+    <button class="btn btn-blue"
+      onclick="NanoBox.open('https://www.openstreetmap.org/export/embed.html?bbox=120.1,22.9,120.4,23.1&layer=mapnik', { title: '台南地圖' })">
+      JS 呼叫開啟
+    </button>
+
+    <button class="btn btn-gray" onclick="NanoBox.close()">
+      關閉
+    </button>
+  </div>
+
+  <hr>
+
+  <div class="label">引入方式</div>
+  <pre>&lt;link rel="stylesheet" href="nanobox.css"&gt;
+&lt;script src="nanobox.js"&gt;&lt;/script&gt;</pre>
+
+  <div class="label">HTML 屬性</div>
+  <pre>&lt;!-- 最簡單 --&gt;
+&lt;a href="https://example.com" data-nanobox&gt;開啟&lt;/a&gt;
+
+&lt;!-- 帶標題、自訂尺寸 --&gt;
+&lt;a href="https://example.com"
+   data-nanobox
+   data-nanobox-title="標題"
+   data-nanobox-width="70vw"
+   data-nanobox-height="70vh"&gt;開啟&lt;/a&gt;</pre>
+
+  <div class="label">JavaScript API</div>
+  <pre>// 開啟（最簡）
+NanoBox.open('https://example.com');
+
+// 帶完整選項
+NanoBox.open('https://example.com', {
+  title:          '視窗標題',
+  width:          '50vw',
+  maxWidth:       '760px',
+  height:         '80vh',
+  closeOnOverlay: true,
+  closeOnEsc:     true,
+});
+
+// 關閉
+NanoBox.close();
+
+// 修改全域預設值
+NanoBox.config({ maxWidth: '900px' });
+
+// 動態插入元素後重新綁定
+NanoBox.bindAll();</pre>
+</div>
+</body>
+</html>
