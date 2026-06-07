@@ -53,17 +53,29 @@ function renderMarkers() {
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
         
-        // 【顏色調整】選中時維持琥珀橘，未選中（預設）時改為醒目的粉紅色
-        const markerColor = isSelected ? '#f59e0b' : '#ff6b8b';
+        // 考慮到網頁有 Invert(反轉) 濾鏡，我們選擇經過反向計算的顏色：
+        // 預設（未選）：#9c27b0 (在濾鏡下會呈現非常柔和、不刺眼的優雅粉紅)
+        // 選中：#f59e0b (維持原本好看的琥珀橘)
+        const markerColor = isSelected ? '#f59e0b' : '#9c27b0';
 
-        // 使用 L.circleMarker 繪製極簡圓點（徹底擺脫預設的十字標問題）
-        const customMarker = L.circleMarker([place.lat, place.lng], {
-            radius: 6.5,         // 稍微放大一點點圓點，讓粉紅色更好看
+        // 建立一個空的 Icon，徹底拔除 Leaflet 預設的藍色水滴與十字 + 號
+        const blankIcon = L.divIcon({
+            className: 'custom-blank-icon',
+            html: '',
+            iconSize: [0, 0]
+        });
+
+        // 用 L.marker 搭配空 Icon 來負責點擊與彈出視窗
+        const customMarker = L.marker([place.lat, place.lng], { icon: blankIcon });
+
+        // 在同一個位置畫上純粹的幾何圓點，確保視覺絕對乾淨
+        const circle = L.circleMarker([place.lat, place.lng], {
+            radius: 5.5,         // 微調大小，讓視覺更精緻
             fillColor: markerColor,
-            color: '#121212',    // 邊框使用與背景相同的深黑色，讓圓點邊緣更乾淨
+            color: '#121212',    // 深黑邊框，讓圓點與背景融合得更好
             weight: 1.5,
             opacity: 1,
-            fillOpacity: 0.95    // 稍微提高不透明度，讓粉紅與橘色在暗色地圖上更跳
+            fillOpacity: 0.9
         });
 
         customMarker.bindPopup(`
@@ -72,6 +84,9 @@ function renderMarkers() {
                 <span class="text-xs text-amber-700 font-bold">[${place.type}] 距離圓環 ${place.dist}</span>
             </div>
         `);
+
+        // 將圓點與標記同時放入圖層組
+        markersGroup.addLayer(circle);
         markersGroup.addLayer(customMarker);
     });
 }
