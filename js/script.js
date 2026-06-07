@@ -53,44 +53,33 @@ function renderMarkers() {
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
         
-        // 考慮到網頁有 Invert(反轉) 濾鏡，我們選擇經過反向計算的顏色：
-        // 預設（未選）：#9c27b0 (在濾鏡下會呈現非常柔和、不刺眼的優雅粉紅)
-        // 選中：#f59e0b (維持原本好看的琥珀橘)
-        const markerColor = isSelected ? '#f59e0b' : '#9c27b0';
+        // 核心色彩逆向計算（配合網頁 invert 濾鏡）：
+        // 1. 選中時：維持原本好看的琥珀橘 (#f59e0b)
+        // 2. 預設推薦點：使用 #22c55e (綠色)，經過網頁濾鏡反轉後，就會在畫面上呈現出最完美的粉紅色！
+        const markerColor = isSelected ? '#f59e0b' : '#22c55e';
 
-        // 建立一個空的 Icon，徹底拔除 Leaflet 預設的藍色水滴與十字 + 號
-        const blankIcon = L.divIcon({
-            className: 'custom-blank-icon',
-            html: '',
-            iconSize: [0, 0]
-        });
-
-        // 用 L.marker 搭配空 Icon 來負責點擊與彈出視窗
-        const customMarker = L.marker([place.lat, place.lng], { icon: blankIcon });
-
-        // 在同一個位置畫上純粹的幾何圓點，確保視覺絕對乾淨
+        // 徹底捨棄 L.marker，只使用純幾何圓圈 L.circleMarker，這樣地圖上就絕對不會出現任何 + 號
         const circle = L.circleMarker([place.lat, place.lng], {
-            radius: 5.5,         // 微調大小，讓視覺更精緻
+            radius: 6.5,         // 稍微放大一點點，讓粉紅色圓點更清晰好看
             fillColor: markerColor,
-            color: '#121212',    // 深黑邊框，讓圓點與背景融合得更好
+            color: '#121212',    // 深黑邊框，讓圓點邊緣乾淨不刺眼
             weight: 1.5,
             opacity: 1,
-            fillOpacity: 0.9
+            fillOpacity: 0.95    // 提高不透明度，讓顏色飽滿
         });
 
-        customMarker.bindPopup(`
+        // 直接將彈出視窗綁定在圓圈上
+        circle.bindPopup(`
             <div class="text-zinc-900 p-1">
                 <strong class="text-sm">${place.name}</strong><br>
                 <span class="text-xs text-amber-700 font-bold">[${place.type}] 距離圓環 ${place.dist}</span>
             </div>
         `);
 
-        // 將圓點與標記同時放入圖層組
+        // 將乾淨的圓點加入圖層
         markersGroup.addLayer(circle);
-        markersGroup.addLayer(customMarker);
     });
 }
-
 // 4. 渲染左側餐廳清單 UI
 function renderList() {
     const listContainer = document.getElementById('restaurant-list');
