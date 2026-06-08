@@ -126,10 +126,10 @@ function renderList() {
                         }">
                     ${isSelected ? '✓ 已加入' : '+ 行程'}
                 </button>
-                <button onclick="openMap('${place.name}','${place.googlemap}'); event.stopPropagation();"
+                <a href="${place.gmap}" target="_blank" onclick="event.stopPropagation();"
                     class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
                     🗺 地圖
-                </button>
+                </a>
             </div>
             <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${place.desc}</p>
         `;
