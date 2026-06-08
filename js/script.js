@@ -11,7 +11,7 @@ function initMap() {
     // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     //     attribution: '© OpenStreetMap contributors'
     // }).addTo(map);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors © CARTO'
     }).addTo(map);
 
