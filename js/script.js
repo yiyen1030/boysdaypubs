@@ -126,6 +126,10 @@ function renderList() {
                         }">
                     ${isSelected ? '✓ 已加入' : '+ 行程'}
                 </button>
+                button onclick="openMap('${place.name}','${place.addr}'); event.stopPropagation();"
+                    class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800">
+                    🗺 地圖
+                </button>
             </div>
             <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${place.desc}</p>
         `;
@@ -209,6 +213,17 @@ function generateRoute() {
     const finalMapUrl = `${baseUrl}&origin=${origin}&destination=${destination}${waypointsParam}${travelMode}`;
 
     window.open(finalMapUrl, '_blank');
+}
+
+// 9. 店家介紹
+function openMap(title,addr) {
+    if (!addr) return;
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`;
+    NanoBox.open(url, {
+        title: title,
+        // width: '80vw',
+        // height: '80vh'
+    });
 }
 
 // 網頁載入完成後依序初始化地圖、抓取資料
