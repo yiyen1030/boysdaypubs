@@ -9,7 +9,7 @@ function initMap() {
     L.control.zoom({ position: 'topright' }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+        attribution: '© OpenStreetMap contributors © CARTO'
     }).addTo(map);
 
     markersGroup = L.layerGroup().addTo(map);
