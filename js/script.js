@@ -119,15 +119,15 @@ function renderList() {
                     <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${place.dist} | ${place.addr}</p>
                 </div>
                 <button onclick="toggleCart(${place.id}); event.stopPropagation();" 
-                        class="text-xs px-2.5 py-1 rounded transition border ${
+                        class="text-xs px-2.5 py-1 rounded transition border whitespace-nowrap ${
                             isSelected 
                             ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20' 
                             : 'border-zinc-800 text-zinc-400 hover:bg-zinc-800'
                         }">
                     ${isSelected ? '✓ 已加入' : '+ 行程'}
                 </button>
-                <button onclick="openMap('${place.name}','${place.addr}'); event.stopPropagation();"
-                    class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800">
+                <button onclick="openMap('${place.name}','${place.googlemap}'); event.stopPropagation();"
+                    class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
                     🗺 地圖
                 </button>
             </div>
@@ -216,9 +216,8 @@ function generateRoute() {
 }
 
 // 9. 店家介紹
-function openMap(title,addr) {
-    if (!addr) return;
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addr)}`;
+function openMap(title,url) {
+    if (!url) return;
     NanoBox.open(url, {
         title: title,
         // width: '80vw',
