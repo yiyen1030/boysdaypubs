@@ -126,7 +126,7 @@ function renderList() {
                         }">
                     ${isSelected ? '✓ 已加入' : '+ 行程'}
                 </button>
-                button onclick="openMap('${place.name}','${place.addr}'); event.stopPropagation();"
+                <button onclick="openMap('${place.name}','${place.addr}'); event.stopPropagation();"
                     class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800">
                     🗺 地圖
                 </button>
