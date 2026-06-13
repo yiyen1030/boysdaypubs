@@ -8,7 +8,7 @@
 
   "type": "串燒居酒屋",
 
-  "distanceFromDongmen": 950,
+  "dist": 950,
 
   "addr": "台南市東區長榮路二段3號",
 
@@ -82,7 +82,7 @@
 
   "type": "串燒居酒屋",
 
-  "distanceFromDongmen": 1100,
+  "dist": 1100,
 
   "addr": "台南市東區東安路30巷10號",
 
@@ -155,7 +155,7 @@
 
   "type": "居酒屋",
 
-  "distanceFromDongmen": 950,
+  "dist": 950,
 
   "addr": "台南市東區林森路二段59號",
 
@@ -227,7 +227,7 @@
 
   "type": "串燒居酒屋",
 
-  "distanceFromDongmen": 850,
+  "dist": 850,
 
   "addr": "台南市東區府連東路55號",
 
@@ -300,7 +300,7 @@
 
   "type": "串燒居酒屋",
 
-  "distanceFromDongmen": 1300,
+  "dist": 1300,
 
   "addr": "台南市東區裕農路86號",
 
@@ -372,7 +372,7 @@
 
   "type": "居酒屋",
 
-  "distanceFromDongmen": 1200,
+  "dist": 1200,
 
   "addr": "台南市東區東寧路西段15號",
 
@@ -444,7 +444,7 @@
 
   "type": "酒食居酒屋",
 
-  "distanceFromDongmen": 1400,
+  "dist": 1400,
 
   "addr": "台南市東區東安路48巷27號",
 
@@ -516,7 +516,7 @@
 
   "type": "日式居酒屋",
 
-  "distanceFromDongmen": 700,
+  "dist": 700,
 
   "addr": "台南市東區東門路二段332號",
 
@@ -589,7 +589,7 @@
 
   "type": "居酒屋",
 
-  "distanceFromDongmen": 1800,
+  "dist": 1800,
 
   "addr": "台南市東區林森路二段38號",
 
@@ -660,7 +660,7 @@
 
   "type": "燒鳥專門",
 
-  "distanceFromDongmen": 1600,
+  "dist": 1600,
 
   "addr": "台南市東區東安路100號",
 
@@ -732,7 +732,7 @@
 
   "type": "串燒居酒屋",
 
-  "distanceFromDongmen": 450,
+  "dist": 450,
 
   "addr": "台南市東區大同路一段75號",
 
@@ -804,7 +804,7 @@
 
   "type": "居酒屋",
 
-  "distanceFromDongmen": 1900,
+  "dist": 1900,
 
   "addr": "台南市中西區府前路一段312號",
 
@@ -876,7 +876,7 @@
 
   "type": "串燒",
 
-  "distanceFromDongmen": 1700,
+  "dist": 1700,
 
   "addr": "台南市中西區中正路211號",
 
