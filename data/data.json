@@ -1,90 +1,940 @@
 [
-  {
-    "id": 1,
-    "name": "Bar Alter",
-    "type": "酒吧",
-    "dist": "650m",
-    "addr": "台南市東區東門路一段22號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9892,
-    "lng": 120.2148,
-    "desc": "寂靜寂風老宅酒吧。將在地日常飲食風味（如一農虱目魚、旗魚鬆）融入調酒與小食。"
-  },
-  {
-    "id": 2,
-    "name": "在島之後 After Island",
-    "type": "餐酒館",
-    "dist": "1.2km",
-    "addr": "台南市東區東寧路201巷121號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9934,
-    "lng": 120.2241,
-    "desc": "隱身東寧路巷弄綠意老宅。主打精緻義法料理與層次細緻的特色茶酒，氛圍極佳。"
-  },
-  {
-    "id": 3,
-    "name": "Bar Home",
-    "type": "餐酒館",
-    "dist": "1.5km",
-    "addr": "台南市中西區中山路23巷1號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9945,
-    "lng": 120.2078,
-    "desc": "TCRC二店。與私廚團隊合作，提供虱目魚泡芙、頂級歐陸料理與頂尖客製化調酒。"
-  },
-  {
-    "id": 4,
-    "name": "家根創意酒肴 - 大同店",
-    "type": "居酒屋",
-    "dist": "1.2km",
-    "addr": "台南市東區大同路二段257號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9795,
-    "lng": 120.2152,
-    "desc": "美式工業風日式居酒屋。主打野生魚料、串燒肉與重口味創意下酒菜，適合大口喝生啤。"
-  },
-  {
-    "id": 5,
-    "name": "LATE Bistro 暮餐酒館",
-    "type": "餐酒館",
-    "dist": "200m",
-    "addr": "台南市東區東門路一段12號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9895,
-    "lng": 120.2125,
-    "desc": "緊鄰東門圓環。從傍晚一路營業至深夜，主打精緻異國料理、義大利麵與多變特調。"
-  },
-  {
-    "id": 6,
-    "name": "泉發酒吧 Chuanfa Bar",
-    "type": "酒吧",
-    "dist": "200m",
-    "addr": "台南市東區東門路一段10巷10號3樓",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9898,
-    "lng": 120.2128,
-    "desc": "比利時老闆開的復古老宅酒吧。位於福德爺廟旁民宅3樓，空間寬敞，特調極具個性。"
-  },
-  {
-    "id": 7,
-    "name": "Moonrock",
-    "type": "酒吧",
-    "dist": "1.3km",
-    "addr": "台南市北區成功路22巷42弄13號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9972,
-    "lng": 120.2115,
-    "desc": "世界50最佳酒吧之一。瀰漫優雅現代孤寂感，調酒風味細緻如香水，內行酒客必訪。"
-  },
-  {
-    "id": 8,
-    "name": "榕洋行 Ron & Company",
-    "type": "酒吧",
-    "dist": "1.4km",
-    "addr": "台南市中西區開山路29巷24號",
-    "gmap": "https://maps.app.goo.gl/WC8FLaQWkpjtfQq98",
-    "lat": 22.9905,
-    "lng": 120.2052,
-    "desc": "三層樓老洋行複合空間。二樓為大人味爵士俱樂部，調酒大量運用台灣在地水果與紫蘇。"
-  }
+{
+  "id": 1,
+
+  "slug": "three-barbecue",
+
+  "name": "3號燒烤美食",
+
+  "type": "串燒居酒屋",
+
+  "distanceFromDongmen": 950,
+
+  "addr": "台南市東區長榮路二段3號",
+
+  "phone": "06-200-6521",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/zw9N247UA3H6NnDB9",
+
+  "rating": 4.9,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.2,
+
+  "groupSize": [3, 4, 5, 6, 7, 8],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "主打炭火串燒、創意和洋料理與無菜單私廚料理，提供生啤酒、炸物及宵夜餐點。二樓有聚餐空間，適合朋友聚會與小酌聊天。",
+
+  "foods": [
+    "串燒拼盤",
+    "胡椒南洋魚",
+    "日本生食級生蠔",
+    "麻辣鴨舌",
+    "巨無霸牛肉串",
+    "拔絲地瓜"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "炭火燒烤",
+    "私廚料理",
+    "無菜單料理",
+    "聚餐",
+    "宵夜",
+    "生啤酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/three-barbecue/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/three-barbecue/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/three-barbecue/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 2,
+
+  "slug": "mummu-yakitori",
+
+  "name": "穆木 Mummu 串燒",
+
+  "type": "串燒居酒屋",
+
+  "distanceFromDongmen": 1100,
+
+  "addr": "台南市東區東安路30巷10號",
+
+  "phone": "06-208-8085",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/bKHNMXmkbgyBTdbi6",
+
+  "rating": 4.8,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.0,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "主打日式炭火串燒與居酒屋料理，環境帶有日式木質風格，適合朋友聚餐、小酌聊天與下班聚會。",
+
+  "foods": [
+    "雞腿串",
+    "雞皮串",
+    "鹽烤松阪豬",
+    "明太子山藥",
+    "烤櫛瓜",
+    "炒烏龍麵"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "炭火燒烤",
+    "日式料理",
+    "聚餐",
+    "宵夜",
+    "生啤酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/mummu/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/mummu/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/mummu/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 3,
+
+  "slug": "noahs-ark-yakitori",
+
+  "name": "小方舟串燒酒場",
+
+  "type": "居酒屋",
+
+  "distanceFromDongmen": 950,
+
+  "addr": "台南市東區林森路二段59號",
+
+  "phone": "06-236-7399",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/SaHxdjehLYzEFRxo8",
+
+  "rating": 4.7,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.4,
+
+  "groupSize": [2, 3, 4, 5, 6, 7, 8],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "台南知名日式串燒酒場，以備長炭串燒、海鮮料理與酒類選擇聞名，聚餐氣氛佳，適合多人小酌。",
+
+  "foods": [
+    "明太子雞腿串",
+    "北海道鯖魚",
+    "松阪豬",
+    "清酒蛤蜊",
+    "烤櫛瓜",
+    "鹽烤雞翅"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "備長炭",
+    "海鮮",
+    "聚餐",
+    "啤酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/noahs-ark/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/noahs-ark/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/noahs-ark/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 4,
+
+  "slug": "yuandian-bbq",
+
+  "name": "原佃燒烤",
+
+  "type": "串燒居酒屋",
+
+  "distanceFromDongmen": 850,
+
+  "addr": "台南市東區府連東路55號",
+
+  "phone": "06-209-4858",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/KbX6aQBZFxZDWhRg9",
+
+  "rating": 4.8,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.3,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "老字號日式燒烤店，以炭烤串燒、海鮮與下酒菜聞名，是許多台南人聚餐喝酒的口袋名單。",
+
+  "foods": [
+    "雞肉串",
+    "鹽烤牛小排",
+    "烤透抽",
+    "雞軟骨",
+    "烤香菇",
+    "炒水蓮"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "炭火燒烤",
+    "海鮮",
+    "聚餐",
+    "宵夜",
+    "啤酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/yuandian/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/yuandian/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/yuandian/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 5,
+
+  "slug": "moonlight-bbq",
+
+  "name": "月月串燒 Moonlight BBQ",
+
+  "type": "串燒居酒屋",
+
+  "distanceFromDongmen": 1300,
+
+  "addr": "台南市東區裕農路86號",
+
+  "phone": "",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/5hLqn1TAF6b2nYaZ8",
+
+  "rating": 4.8,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 8.9,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "以日式串燒、炸物與啤酒為主，店面風格年輕，適合朋友聚會與下班小酌。",
+
+  "foods": [
+    "雞腿串",
+    "雞皮串",
+    "明太子山藥",
+    "鹽烤櫛瓜",
+    "唐揚雞",
+    "炒烏龍麵"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "日式料理",
+    "聚餐",
+    "啤酒",
+    "宵夜",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/moonlight/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/moonlight/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/moonlight/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 6,
+
+  "slug": "zangfu-izakaya",
+
+  "name": "藏富居酒屋",
+
+  "type": "居酒屋",
+
+  "distanceFromDongmen": 1200,
+
+  "addr": "台南市東區東寧路西段15號",
+
+  "phone": "06-208-5592",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/n7KbBT9ZS22z25g39",
+
+  "rating": 4.7,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 8.9,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "主打日式居酒屋料理與串燒，提供生啤酒、清酒及各式下酒菜，適合朋友聚餐與下班小酌。",
+
+  "foods": [
+    "鹽烤雞腿串",
+    "烤松阪豬",
+    "明太子山藥",
+    "烤午仔魚",
+    "炒水蓮",
+    "唐揚雞"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "清酒",
+    "聚餐",
+    "啤酒",
+    "宵夜",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/zangfu/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/zangfu/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/zangfu/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 7,
+
+  "slug": "miosan-sakaba",
+
+  "name": "澪三酒食",
+
+  "type": "酒食居酒屋",
+
+  "distanceFromDongmen": 1400,
+
+  "addr": "台南市東區東安路48巷27號",
+
+  "phone": "06-208-0678",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/1bF639qTRAFc7Bi97",
+
+  "rating": 4.8,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.0,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "結合日式居酒屋與創意酒食料理，提供串燒、烤物與特色下酒菜，氛圍輕鬆適合聚會聊天。",
+
+  "foods": [
+    "炙燒牛肉",
+    "雞頸肉串",
+    "明太子玉子燒",
+    "鹽烤鯖魚",
+    "炸牡蠣",
+    "炒烏龍麵"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "創意料理",
+    "串燒",
+    "啤酒",
+    "聚餐",
+    "宵夜",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/miosan/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/miosan/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/miosan/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 8,
+
+  "slug": "ginraku-japanese",
+
+  "name": "銀樂日式手創料理",
+
+  "type": "日式居酒屋",
+
+  "distanceFromDongmen": 700,
+
+  "addr": "台南市東區東門路二段332號",
+
+  "phone": "06-267-0182",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/HWiG8cYUb8JnM8rEA",
+
+  "rating": 4.8,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.3,
+
+  "groupSize": [2, 3, 4, 5, 6, 7, 8],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "台南人氣日式料理店，提供串燒、握壽司、生魚片與各式酒食料理，適合家庭聚餐與朋友小酌。",
+
+  "foods": [
+    "炙燒鮭魚握壽司",
+    "明太子雞肉串",
+    "鹽烤鯖魚",
+    "松阪豬",
+    "炸軟殼蟹",
+    "海鮮炒烏龍"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "日式料理",
+    "串燒",
+    "壽司",
+    "海鮮",
+    "聚餐",
+    "啤酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/ginraku/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/ginraku/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/ginraku/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 9,
+
+  "slug": "38ban-izakaya",
+
+  "name": "三十八番居酒屋",
+
+  "type": "居酒屋",
+
+  "distanceFromDongmen": 1800,
+
+  "addr": "台南市東區林森路二段38號",
+
+  "phone": "06-236-0038",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/yNhySJLsu4YBgc4r9",
+
+  "rating": 4.7,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 8.8,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "提供串燒、烤物與各式日式下酒菜，氣氛熱鬧，適合朋友聚餐及下班續攤。",
+
+  "foods": [
+    "雞腿串",
+    "豬五花串",
+    "鹽烤透抽",
+    "烤玉米筍",
+    "炸雞軟骨",
+    "炒水蓮"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "聚餐",
+    "啤酒",
+    "宵夜",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/38ban/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/38ban/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/38ban/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 10,
+
+  "slug": "furong-yakitori",
+
+  "name": "芙蓉鳥燒",
+
+  "type": "燒鳥專門",
+
+  "distanceFromDongmen": 1600,
+
+  "addr": "台南市東區東安路100號",
+
+  "phone": "06-209-7700",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/QKk2w5dFrGzV63tS8",
+
+  "rating": 4.9,
+
+  "price": "$$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.5,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": false,
+
+  "desc": "主打日式燒鳥與炭火串燒，選用雞肉不同部位製作串燒，偏向精緻燒鳥酒場風格。",
+
+  "foods": [
+    "雞腿肉串",
+    "雞心串",
+    "雞肝串",
+    "雞頸肉串",
+    "月見雞肉丸",
+    "雞白湯"
+  ],
+
+  "tags": [
+    "燒鳥",
+    "串燒",
+    "日式料理",
+    "精緻餐酒",
+    "聚餐",
+    "啤酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/furong/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/furong/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/furong/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 11,
+
+  "slug": "hoda-yakitori",
+
+  "name": "Ho達串燒酒場",
+
+  "type": "串燒居酒屋",
+
+  "distanceFromDongmen": 450,
+
+  "addr": "台南市東區大同路一段75號",
+
+  "phone": "06-214-2975",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/5Grj7pfSq6ECpoMw6",
+
+  "rating": 4.9,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.4,
+
+  "groupSize": [2, 3, 4, 5, 6],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "位於東門圓環旁的日式串燒酒場，以炭火串燒、炸物與下酒菜為主，交通便利，是東區下班聚餐與小酌的人氣選擇。",
+
+  "foods": [
+    "雞腿串",
+    "牛肉串",
+    "雞皮串",
+    "炸蝦天婦羅",
+    "揚出豆腐",
+    "鹽烤松阪豬"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "炭火燒烤",
+    "聚餐",
+    "啤酒",
+    "宵夜",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/hoda/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/hoda/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/hoda/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 12,
+
+  "slug": "wuliushou-tainan",
+
+  "name": "吳留手串燒居酒屋",
+
+  "type": "居酒屋",
+
+  "distanceFromDongmen": 1900,
+
+  "addr": "台南市中西區府前路一段312號",
+
+  "phone": "06-214-2200",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/6Lv5TfUN5B6Mg7ag6",
+
+  "rating": 4.8,
+
+  "price": "$$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 9.3,
+
+  "groupSize": [2, 3, 4, 5, 6, 7, 8],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "來自台北的人氣居酒屋品牌，主打高品質串燒與精緻日式下酒菜，適合聚餐、約會與商務小酌。",
+
+  "foods": [
+    "鹽烤雞腿串",
+    "月見雞肉丸",
+    "烤透抽",
+    "明太子山藥",
+    "午仔魚一夜干",
+    "牛肋條串"
+  ],
+
+  "tags": [
+    "居酒屋",
+    "串燒",
+    "精緻料理",
+    "聚餐",
+    "啤酒",
+    "清酒",
+    "可訂位"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/wuliushou/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/wuliushou/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/wuliushou/03.jpg",
+      "type": "interior"
+    }
+  ]
+},
+{
+  "id": 13,
+
+  "slug": "jiaotangfeng-yakitori",
+
+  "name": "焦糖楓串燒",
+
+  "type": "串燒",
+
+  "distanceFromDongmen": 1700,
+
+  "addr": "台南市中西區中正路211號",
+
+  "phone": "06-223-0118",
+
+  "lat": null,
+  "lng": null,
+
+  "gmap": "https://maps.app.goo.gl/EQxwzqhc5MLe6coX8",
+
+  "rating": 4.7,
+
+  "price": "$",
+
+  "beer": true,
+
+  "reservation": false,
+
+  "recommendScore": 8.5,
+
+  "groupSize": [2, 3, 4],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "連鎖串燒品牌，以平價現烤串燒為主，不使用油炸，適合作為晚餐、宵夜或朋友簡單聚會。",
+
+  "foods": [
+    "雞腿串",
+    "雞皮串",
+    "米血",
+    "甜不辣",
+    "豆干",
+    "豬五花串"
+  ],
+
+  "tags": [
+    "串燒",
+    "平價美食",
+    "宵夜",
+    "外帶",
+    "啤酒"
+  ],
+
+  "images": [
+    {
+      "src": "/images/restaurants/jiaotangfeng/01.jpg",
+      "type": "cover"
+    },
+    {
+      "src": "/images/restaurants/jiaotangfeng/02.jpg",
+      "type": "food"
+    },
+    {
+      "src": "/images/restaurants/jiaotangfeng/03.jpg",
+      "type": "interior"
+    }
+  ]
+}
 ]
