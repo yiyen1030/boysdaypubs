@@ -25,3 +25,23 @@
 ├── js/                  # 前端核心邏輯 (包含 Google Map 初始化與分享功能)
 ├── plugin/dakenanobox/  # 自訂或引入的彈出視窗/燈箱外掛套件
 └── index.html           # 網站主入口網頁
+
+---
+
+## 📊 店家資料格式 (data.json 規範)
+每個店家物件皆包含以下欄位，用以支援前端地圖標記、篩選與路線規劃：
+
+| 欄位名 | 型態 | 說明 | 範例 |
+| :--- | :--- | :--- | :--- |
+| `id` | Number | 店家不重複編號 | `1` |
+| `slug` | String | 網頁網址/圖片路徑代稱 | `"three-barbecue"` |
+| `name` | String | 店家名稱 | `"3號燒烤美食"` |
+| `type` | String | 店家分類標籤 | `"串燒居酒屋"` |
+| `distanceFromDongmen` | Number | **距離東門城的實際距離 (公尺)** | `950` |
+| `addr` | String | 店家完整地址 | `"台南市東區長榮路二段3號"` |
+| `lat` / `lng` | Number | Google 地圖精確經緯度 | `22.9872`, `120.2187` |
+| `gmap` | String | Google Maps 導航/分享連結 | `"https://maps.app.goo.gl/..."` |
+| `rating` | Number | Google 地圖評分 | `4.9` |
+| `price` | String | 消費價位區間 ($ ~ $$$) | `"$$"` |
+| `groupSize` | Array | 適合的聚會人數區間 | `[3, 4, 5, 6, 7, 8]` |
+| `foods` / `tags` | Array | 招牌食物與搜尋標籤 | `["串燒", "宵夜"]` |
