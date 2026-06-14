@@ -118,13 +118,17 @@ function renderList() {
                     <h3 class="text-sm font-medium text-zinc-200">${place.name}</h3>
                     <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${place.dist} | ${place.addr}</p>
                 </div>
-                <button onclick="toggleCart(${place.id}); event.stopPropagation();" 
+                <button onclick="toggleCart(${place.id}); event.stopPropagation();"
                         class="text-xs px-2.5 py-1 rounded transition border whitespace-nowrap ${
-                            isSelected 
-                            ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20' 
+                            isSelected
+                            ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20'
                             : 'border-zinc-800 text-zinc-400 hover:bg-zinc-800'
                         }">
                     ${isSelected ? '✓ 已加入' : '+ 行程'}
+                </button>
+                <button onclick="openPreview(${place.id}); event.stopPropagation();"
+                        class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
+                    👁 預覽
                 </button>
                 <a href="${place.gmap}" target="_blank" onclick="event.stopPropagation();"
                     class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
@@ -220,8 +224,95 @@ function openMap(title,url) {
     if (!url) return;
     NanoBox.open(url, {
         title: title,
-        // width: '80vw',
-        // height: '80vh'
+    });
+}
+
+// 10. Preview Offcanvas
+let carouselIndex = 0;
+let carouselTotal = 0;
+
+function openPreview(id) {
+    const place = places.find(p => p.id === id);
+    if (!place) return;
+
+    // 標題
+    document.getElementById('preview-title').textContent = place.name;
+
+    // 描述
+    document.getElementById('preview-desc').textContent = place.desc || '';
+
+    // 標籤
+    const tagsEl = document.getElementById('preview-tags');
+    tagsEl.innerHTML = (place.tags || []).map(tag =>
+        `<span class="px-2 py-0.5 text-[10px] rounded bg-zinc-800 text-zinc-400 border border-zinc-700">${tag}</span>`
+    ).join('');
+
+    // 基本資訊
+    const metaEl = document.getElementById('preview-meta');
+    const metaItems = [
+        place.addr      && `<span>📍 ${place.addr}</span>`,
+        place.phone     && `<span>📞 ${place.phone}</span>`,
+        place.rating    && `<span>⭐ ${place.rating} 分</span>`,
+        place.price     && `<span>💰 ${place.price}</span>`,
+        place.dist      && `<span>📏 距東門城 ${place.dist} 公尺</span>`,
+    ].filter(Boolean);
+    metaEl.innerHTML = metaItems.join('');
+
+    // 招牌料理
+    const foods = place.foods || [];
+    const foodsBlock = document.getElementById('preview-foods-block');
+    if (foods.length > 0) {
+        document.getElementById('preview-foods').innerHTML = foods.map(f =>
+            `<span class="px-2 py-0.5 text-[10px] rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">${f}</span>`
+        ).join('');
+        foodsBlock.classList.remove('hidden');
+    } else {
+        foodsBlock.classList.add('hidden');
+    }
+
+    // 照片輪播
+    const images = (place.images || []);
+    carouselIndex = 0;
+    carouselTotal = images.length;
+
+    const track = document.getElementById('carousel-track');
+    track.innerHTML = images.map(img =>
+        `<img src="${img.src}" alt="${img.type}" onerror="this.src='https://placehold.co/480x260/27272a/52525b?text=No+Image'">`
+    ).join('');
+    track.style.transform = 'translateX(0)';
+
+    const dotsEl = document.getElementById('carousel-dots');
+    dotsEl.innerHTML = images.map((_, i) =>
+        `<div class="carousel-dot ${i === 0 ? 'active' : ''}" onclick="carouselGoTo(${i})"></div>`
+    ).join('');
+
+    const noImage = images.length === 0;
+    document.getElementById('carousel-prev').style.display = noImage ? 'none' : '';
+    document.getElementById('carousel-next').style.display = noImage ? 'none' : '';
+    if (noImage) {
+        track.innerHTML = `<div class="w-full h-[260px] flex items-center justify-center text-zinc-600 text-sm">尚無照片</div>`;
+    }
+
+    document.getElementById('preview-panel').classList.add('open');
+    document.getElementById('preview-backdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePreview() {
+    document.getElementById('preview-panel').classList.remove('open');
+    document.getElementById('preview-backdrop').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function carouselMove(dir) {
+    carouselGoTo((carouselIndex + dir + carouselTotal) % carouselTotal);
+}
+
+function carouselGoTo(index) {
+    carouselIndex = index;
+    document.getElementById('carousel-track').style.transform = `translateX(-${index * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
     });
 }
 

@@ -51,6 +51,44 @@
     <!-- 右側/下方：地圖區 -->
     <div id="map" class="flex-1 h-[40vh] md:h-full w-full"></div>
 
+    <!-- Preview Offcanvas Panel -->
+    <div id="preview-backdrop" onclick="closePreview()"></div>
+    <div id="preview-panel">
+        <!-- 關閉按鈕 -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800 flex-shrink-0">
+            <span id="preview-title" class="text-sm font-medium text-zinc-200 tracking-wide"></span>
+            <button onclick="closePreview()" class="text-zinc-500 hover:text-zinc-200 transition text-lg leading-none">✕</button>
+        </div>
+
+        <!-- 照片輪播 -->
+        <div class="relative overflow-hidden flex-shrink-0 bg-zinc-900">
+            <div id="carousel-track" class="carousel-track"></div>
+            <button id="carousel-prev" onclick="carouselMove(-1)"
+                class="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition text-sm">‹</button>
+            <button id="carousel-next" onclick="carouselMove(1)"
+                class="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/80 transition text-sm">›</button>
+            <div id="carousel-dots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5"></div>
+        </div>
+
+        <!-- 介紹內容 (可捲動) -->
+        <div class="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+            <!-- 標籤列 -->
+            <div id="preview-tags" class="flex flex-wrap gap-1.5"></div>
+
+            <!-- 基本資訊 -->
+            <div id="preview-meta" class="space-y-1.5 text-xs text-zinc-400"></div>
+
+            <!-- 描述 -->
+            <p id="preview-desc" class="text-sm text-zinc-300 leading-relaxed"></p>
+
+            <!-- 招牌料理 -->
+            <div id="preview-foods-block" class="hidden">
+                <p class="text-xs text-zinc-500 tracking-wider mb-2">招牌料理</p>
+                <div id="preview-foods" class="flex flex-wrap gap-1.5"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Leaflet.js JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- 自訂外部邏輯腳本 -->
