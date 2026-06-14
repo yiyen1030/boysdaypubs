@@ -249,14 +249,20 @@ function openPreview(id) {
 
     // 基本資訊
     const metaEl = document.getElementById('preview-meta');
-    const metaItems = [
-        place.addr      && `<span>📍 ${place.addr}</span>`,
-        place.phone     && `<span>📞 ${place.phone}</span>`,
-        place.rating    && `<span>⭐ ${place.rating} 分</span>`,
-        place.price     && `<span>💰 ${place.price}</span>`,
-        place.dist      && `<span>📏 距東門城 ${place.dist} 公尺</span>`,
-    ].filter(Boolean);
-    metaEl.innerHTML = metaItems.join('');
+    const dot = `<span class="mx-1.5 text-zinc-700">·</span>`;
+    const row1 = [
+        place.rating && `<span>⭐ ${place.rating} 分</span>`,
+        place.price  && `<span>💰 ${place.price}</span>`,
+        place.dist   && `<span>📏 距東門城 ${place.dist} 公尺</span>`,
+    ].filter(Boolean).join(dot);
+    const row2 = [
+        place.addr  && `<span>📍 ${place.addr}</span>`,
+        place.phone && `<span>📞 ${place.phone}</span>`,
+    ].filter(Boolean).join(dot);
+    metaEl.innerHTML = [
+        row1 && `<div class="flex flex-wrap items-center">${row1}</div>`,
+        row2 && `<div class="flex flex-wrap items-center">${row2}</div>`,
+    ].filter(Boolean).join('');
 
     // 招牌料理
     const foods = place.foods || [];
