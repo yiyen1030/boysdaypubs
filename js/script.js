@@ -28,26 +28,33 @@ function initMap() {
     }).addTo(map).bindPopup("<b>臺灣府城-東門城</b>");
 }
 
-// 2. 使用 Fetch API 非同步讀取 data.json
+// 2. 使用 Fetch API 非同步讀取 data.json 與 order.json
 function loadData() {
-    fetch('data/data.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('網路回應不成功: ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            places = data; // 將讀取到的資料存入全域變數
-            renderMarkers(); // 渲染地圖標記
-            renderList();    // 渲染左側列表
-        })
-        .catch(error => {
-            console.error('讀取店家資料失敗:', error);
-            document.getElementById('restaurant-list').innerHTML = `
-                <p class="text-xs text-red-400 p-4">⚠️ 無法載入店家資料，請檢查 data/data.json 格式是否正確。</p>
-            `;
-        });
+    Promise.all([
+        fetch('data/data.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); }),
+        fetch('data/order.json').then(r => r.json()).catch(() => null),
+    ])
+    .then(([data, order]) => {
+        if (order) {
+            places = [...data].sort((a, b) => {
+                const ia = order.indexOf(a.id);
+                const ib = order.indexOf(b.id);
+                if (ia === -1) return 1;
+                if (ib === -1) return -1;
+                return ia - ib;
+            });
+        } else {
+            places = data;
+        }
+        renderMarkers();
+        renderList();
+    })
+    .catch(error => {
+        console.error('讀取店家資料失敗:', error);
+        document.getElementById('restaurant-list').innerHTML = `
+            <p class="text-xs text-red-400 p-4">⚠️ 無法載入店家資料，請檢查 data/data.json 格式是否正確。</p>
+        `;
+    });
 }
 
 // 3. 在地圖上繪製所有店家的 Marker
