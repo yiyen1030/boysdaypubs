@@ -60,16 +60,20 @@
 
   "images": [
     {
-      "src": "/images/restaurants/three-barbecue/01.jpg",
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAE7rBR9I-bERM5L-SAxqOdVVH2DMzjexl06d6D8p1O5CENULv2cAl0qLQEKSFx8zWlfHChgA7JG5khDIKHmuchhafOZwE80TDGFIZIzlhwpf0bX5w5mHhle_tzr95gepSFI6EMoSg=s1200-k-no",
       "type": "cover"
     },
     {
-      "src": "/images/restaurants/three-barbecue/02.jpg",
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEDReSLeVGn1YBtvw72lwBUV_JPT_39IaW25gb2CzWXJyOAps6ybWfCfFRBElspV8Pd2D-tbLUPtVT4h1DtAHZsU4kVbaz3SnStFQ9j9Jd3rklWGPqn8R5F_gOcXVyDxrQwjwrYH15ByzkK=s1200-k-no",
       "type": "food"
     },
     {
-      "src": "/images/restaurants/three-barbecue/03.jpg",
-      "type": "interior"
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGxkZ3_leUKEcF0m7KTAl4dytGZRMk5KXnD-Kpd2Z8ijqzO9cwcItliMGqmjHyfHN_RFMjzT1r5lcJXPzAYbkmWzdP-BD2rRTVN_xogL2veQuQ81e8SHldFO2KtG3iRRrQPEryOmc3swG2I=s1200-k-no",
+      "type": "food"
+    },
+    {
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAE4NVJbkc9LyHw2v9GH9bQq40IC3-espRnk-6RsS0asPtvYvr4BjwVYOD6CjVL3IqobCsSvYKvDUBfxpiYa5uRXIY3CqhKXTOBULAxWMS_JA2EkY2hlTguz7hg68bLNsq-uQw9E=s1200-k-no",
+      "type": "food"
     }
   ]
 },
