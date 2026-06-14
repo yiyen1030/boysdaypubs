@@ -1,6 +1,7 @@
 let places = [];        // 儲存從 json 讀取進來的資料
 let selectedCart = [];  // 儲存選中店家的 Array (最多3間)
 let map, markersGroup;
+let userMarker = null;
 
 // 1. 初始化地圖 (中心點設在台南東門圓環：22.9895, 120.2122)
 function initMap() {
@@ -16,6 +17,20 @@ function initMap() {
     }).addTo(map);
 
     markersGroup = L.layerGroup().addTo(map);
+
+    // 定位按鈕
+    const LocateControl = L.Control.extend({
+        options: { position: 'topright' },
+        onAdd() {
+            const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control locate-btn');
+            btn.innerHTML = '📍';
+            btn.title = '定位我的位置';
+            L.DomEvent.disableClickPropagation(btn);
+            L.DomEvent.on(btn, 'click', locateUser);
+            return btn;
+        }
+    });
+    new LocateControl().addTo(map);
 
     // 標記東門圓環中心點
     L.circleMarker(centerLoc, {
@@ -226,7 +241,39 @@ function generateRoute() {
     window.open(finalMapUrl, '_blank');
 }
 
-// 9. 店家介紹
+// 9. 使用者定位
+function locateUser() {
+    if (!navigator.geolocation) {
+        alert('您的瀏覽器不支援定位功能');
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+            const latlng = [coords.latitude, coords.longitude];
+            if (userMarker) map.removeLayer(userMarker);
+
+            const icon = L.divIcon({
+                className: '',
+                html: '<div class="user-location-dot"></div>',
+                iconSize: [20, 20],
+                iconAnchor: [10, 10],
+                popupAnchor: [0, -10]
+            });
+
+            userMarker = L.marker(latlng, { icon })
+                .addTo(map)
+                .bindPopup('<b>📍 你在這裡</b>');
+
+            map.setView(latlng, 16);
+            userMarker.openPopup();
+        },
+        () => {
+            alert('無法取得位置，請確認已允許定位權限。');
+        }
+    );
+}
+
+// 10. 店家介紹
 function openMap(title,url) {
     if (!url) return;
     NanoBox.open(url, {
