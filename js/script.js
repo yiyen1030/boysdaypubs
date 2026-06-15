@@ -2,6 +2,7 @@ let places = [];        // 儲存從 json 讀取進來的資料
 let selectedCart = [];  // 儲存選中店家的 Array (最多3間)
 let map, markersGroup;
 let userMarker = null;
+let focusedId = null;
 
 // 1. 初始化地圖 (中心點設在台南東門圓環：22.9895, 120.2122)
 function initMap() {
@@ -102,6 +103,8 @@ function renderMarkers() {
             </div>
         `);
 
+        circle.on('click', () => focusCard(place.id));
+
         // 將乾淨的圓點加入圖層
         markersGroup.addLayer(circle);
     });
@@ -116,14 +119,16 @@ function renderList() {
         const isSelected = selectedCart.some(item => item.id === place.id);
         
         const card = document.createElement('div');
+        card.id = `card-${place.id}`;
         card.className = `p-4 rounded border transition-all duration-200 cursor-pointer ${
-            isSelected 
-            ? 'bg-zinc-900/80 border-amber-500/50 shadow-md shadow-amber-500/5' 
+            isSelected
+            ? 'bg-zinc-900/80 border-amber-500/50 shadow-md shadow-amber-500/5'
             : 'bg-zinc-900/30 border-zinc-900 hover:border-zinc-800'
-        }`;
-        
+        } ${focusedId === place.id ? 'card-focused' : ''}`;
+
         card.onclick = (e) => {
             if(e.target.tagName !== 'BUTTON') {
+                focusCard(place.id);
                 map.panTo([place.lat, place.lng]);
                 markersGroup.eachLayer(layer => {
                     if(layer.getLatLng().lat === place.lat && layer.getLatLng().lng === place.lng) {
@@ -241,7 +246,21 @@ function generateRoute() {
     window.open(finalMapUrl, '_blank');
 }
 
-// 9. 使用者定位
+// 9. 店家卡片 focus
+function focusCard(id) {
+    if (focusedId !== null) {
+        const prev = document.getElementById(`card-${focusedId}`);
+        if (prev) prev.classList.remove('card-focused');
+    }
+    focusedId = id;
+    const card = document.getElementById(`card-${id}`);
+    if (card) {
+        card.classList.add('card-focused');
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+}
+
+// 10. 使用者定位
 function locateUser() {
     if (!navigator.geolocation) {
         alert('您的瀏覽器不支援定位功能');

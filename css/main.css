@@ -65,6 +65,13 @@ body {
     background: #f59e0b;
 }
 
+/* 店家卡片 focus 狀態 */
+.card-focused {
+    border-left-color: #60a5fa !important;
+    border-left-width: 3px !important;
+    background-color: rgba(59, 130, 246, 0.04) !important;
+}
+
 /* 使用者定位標記 */
 .user-location-dot {
     width: 16px;
