@@ -1,0 +1,554 @@
+[
+  {
+    "id": 101,
+
+    "slug": "chuanfa-bar",
+
+    "name": "泉發酒吧",
+
+    "type": "精釀啤酒吧",
+
+    "dist": 500,
+
+    "addr": "台南市東區東門路一段65號",
+
+    "phone": "",
+
+    "lat": 22.9887,
+    "lng": 120.2129,
+
+    "gmap": "https://maps.google.com/?cid=6501758958625466445",
+
+    "rating": 4.9,
+
+    "price": "$$",
+
+    "beer": true,
+
+    "reservation": false,
+
+    "recommendScore": 9.5,
+
+    "groupSize": [2, 3, 4, 5],
+
+    "drinkFriendly": true,
+
+    "lateNight": true,
+
+    "desc": "東門路上的比利時精釀啤酒專門酒吧，老闆 Vincent 親切健談，知識豐富，來者如友。店內氛圍復古溫馨，適合聚餐後小酌繼攤，週四至週日才營業（8pm–1am）。",
+
+    "drinks": [
+      "比利時修道院啤酒",
+      "季節限定精釀生啤",
+      "比利時白啤",
+      "Trappist 系列"
+    ],
+
+    "tags": [
+      "精釀啤酒",
+      "比利時啤酒",
+      "酒吧",
+      "老闆親切",
+      "聚會",
+      "宵夜",
+      "小酌"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMqxOOWjcrOuZFvBl1a4QDlx5OV5gMPmMUMhRh7Gd5YjZTmOknKPCBd9WT2Y0KZ45a2mAdFFYjRnL4MuygS4nXmAdpDXABjZ2FUGbITUQ3maIOahiPtJvazu-64NVqK40TB78rF_Bww6FFnpg=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZNjWBk2phOqliiuyR28NsQx3LogHGEt54qkJgsXBpfHK4JjJft9wxkDBfXQcfmA9sWGLRk4iQGX7xTCl8Ta5htx0RI-CUfXDz5RtmMb4g-dUYZvVRNRMcnoaFmJJCrrlaqiPTtIf8JrnCQz339KVhPt_Q=s1200-k-no",
+        "type": "interior"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPv-B38JiFHQxeLyh1FiUabUr7Gf0Ia-z-6c7SvL2F24zcx87nWGp58a2Oax3-S0iWmk8s0BNDDlteKUnV3GAEKjXDgd_bCzawRN4xSmiPOyQ1sLpl8gQQYGrNRuvHRf1YqH3hZMQwmNq8Xd4vQoHessA=s1200-k-no",
+        "type": "interior"
+      }
+    ]
+  },
+  {
+    "id": 102,
+
+    "slug": "bar-alter",
+
+    "name": "Bar Alter",
+
+    "type": "調酒吧",
+
+    "dist": 550,
+
+    "addr": "台南市東區東門路一段22號",
+
+    "phone": "06-215-0502",
+
+    "lat": 22.9884,
+    "lng": 120.2122,
+
+    "gmap": "https://maps.google.com/?cid=10288598319252486623",
+
+    "rating": 4.6,
+
+    "price": "$$$",
+
+    "beer": false,
+
+    "reservation": true,
+
+    "recommendScore": 9.1,
+
+    "groupSize": [2, 3, 4],
+
+    "drinkFriendly": true,
+
+    "lateNight": true,
+
+    "desc": "台南設計感最強的調酒吧之一，概念菜單獨樹一格，吧台手功力深厚。空間融合台式傳統與現代都會風格，週四至六開到清晨5點，建議事先預約。",
+
+    "drinks": [
+      "創意特調雞尾酒",
+      "墨西哥辣椒龍舌蘭特調",
+      "季節限定調酒",
+      "威士忌精選"
+    ],
+
+    "tags": [
+      "調酒",
+      "雞尾酒",
+      "設計空間",
+      "深夜酒吧",
+      "需預約",
+      "高質感"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZM-HtfRwp29ThhnZTM559SKmjD4r2Ddv-OiPWx19-xZr3ZY7nS944qGO3LPAwL5k1uCcLd1yB22vOJF7PpLHaeJZEEl500QouvJ_cKHOYBTSSeNNSqSRTQNs3gsTah-WNBVFzP_gq4tTwGAttI=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZP49jhwnyJOtKA_pRnWNXJEvKKqQVQ9GOodnSBpQvsB0oVAMrPe_Gh6Vk7YULPTlajNRHZnRlnJI0EegIA_XNsnilK8kDctrYbZBtYmgh33AiU5J3tBJY9l1OqfqJbgYVXdrCFNpCX3Ie6uwmkonXA7X7OQ=s1200-k-no",
+        "type": "drink"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZO7nUATtoeBXPq-dUXH76S3uhQ6Deows_ox1nKvyymENqxg9bJ0r68vbIxmoV0wa6eM2pR_JZKN_DNzurqMiC6KwUnHslAlrnniynfX3xN-wiiX34Lnd6Npeon-tjt8yFFtga8d-nNAS0qKrQ=s1200-k-no",
+        "type": "interior"
+      }
+    ]
+  },
+  {
+    "id": 103,
+
+    "slug": "dirty-rogers-superbar",
+
+    "name": "DIRTY ROGER'S SUPERBAR",
+
+    "type": "特色酒吧",
+
+    "dist": 800,
+
+    "addr": "台南市東區東門路一段141號",
+
+    "phone": "06-274-7003",
+
+    "lat": 22.9882,
+    "lng": 120.2145,
+
+    "gmap": "https://maps.google.com/?cid=34995155816648514",
+
+    "rating": 4.7,
+
+    "price": "$$",
+
+    "beer": true,
+
+    "reservation": false,
+
+    "recommendScore": 8.8,
+
+    "groupSize": [2, 3, 4],
+
+    "drinkFriendly": true,
+
+    "lateNight": true,
+
+    "desc": "店內停著一台 Ducati 916 重機，老闆 Roger 是英國賽車手與黑膠唱片迷。來這裡喝啤酒、聊賽車、聽黑膠，每天8pm開到凌晨2點。獨一無二的台南酒吧體驗。",
+
+    "drinks": [
+      "瓶裝精釀啤酒",
+      "台灣啤酒",
+      "進口啤酒"
+    ],
+
+    "tags": [
+      "特色主題酒吧",
+      "重機主題",
+      "黑膠音樂",
+      "啤酒",
+      "老闆親切",
+      "聊天聚會"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZOR62jfS1wMONqLFgdqgowqKUZwwT8Uon0qHgAD3TGhAVhsX2n0bTrEEMMaP4XuN-TG9POJBDOYmOtPOoY_RTr6CFjvjvbVBlCiJnxDepVn0e25FcF1HA9m7hn-KB1gt9u_1uYhNFVrAt-SZw=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPIaUVeWY18UMTzGe_Xx7VGHQ8DVPyQxeA7u829aD1gHjtHuqiO6GTwrs4WhELGnLF38cVSTk0egGG0YWE4cO_G8k_FPz8DpgEcaauERTVam_6HH1WN8LNNYse2g8j9v2QZPG6HvVR-BjYuYg=s1200-k-no",
+        "type": "interior"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPlk75Y5e6xdGcqxJnoaLsUer-wYo6BomvnyVquMFJYU4JinqEDswKNDU_fYUdF8u9GaVq4plN9GlexELvXLlP09hVTT6Q1_WqVVBUmxgcFW9O00APkQjrDEhQVbTUKj5UeQhXUJ6v9U9HrmQc=s1200-k-no",
+        "type": "interior"
+      }
+    ]
+  },
+  {
+    "id": 104,
+
+    "slug": "bar-horizon",
+
+    "name": "Bar Horizon",
+
+    "type": "調酒吧",
+
+    "dist": 1500,
+
+    "addr": "台南市中西區中山路79巷66號",
+
+    "phone": "06-221-8321",
+
+    "lat": 22.9944,
+    "lng": 120.2068,
+
+    "gmap": "https://maps.google.com/?cid=12843535138670510710",
+
+    "rating": 5.0,
+
+    "price": "$$$",
+
+    "beer": false,
+
+    "reservation": true,
+
+    "recommendScore": 9.6,
+
+    "groupSize": [2, 3, 4, 5, 6],
+
+    "drinkFriendly": true,
+
+    "lateNight": true,
+
+    "desc": "Google 滿分評價的隱藏酒吧，空間美到每個角落都能拍照。調酒層次豐富，還有令人驚豔的鹹食與甜點（Basque 蛋糕、可露麗）。週二公休，強烈建議預約。",
+
+    "drinks": [
+      "創意特調雞尾酒",
+      "Rifu 招牌特調",
+      "季節調酒",
+      "精選烈酒"
+    ],
+
+    "tags": [
+      "調酒",
+      "滿分評價",
+      "美空間",
+      "甜點",
+      "隱藏酒吧",
+      "高質感",
+      "聚會"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMo830RDkIBdzo5o7lR9leq_4LbEpsmQoBEwCK1GMBkzJ1zzirzUg4FSEfgsMOnnVf61KXdlSPYLQUl5JRC6gSGbmXsWlWjUFKzvOGCR-vTEkC1MYipaVv6phMVDEeoe8vBBw8UDTbBqIMR7QdEZKAzSA=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMqNcj2WsO795ZB_lFBDhgOGmxL8WAcCvXg8LOLD8ZNBiYTN9abhLNbO6H1WSmqxKroJeux3Ob3q03CRnpdWQl0nz4jJe9VLIMHt6pJwwK4H96RGwgmh7KqFtH1cGaF_m4BbIodp2d_lxSMp1caUnME=s1200-k-no",
+        "type": "drink"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMxiC37oazHbPdJ2mlz6HgHhBidtClJHZB88aHgce2q80BlUuW6ZEJH_nzD_snsqJo8HSJdkD4iXWF-pllrcK4WV506eICIRVH-0YYnqX58PoUnH9STDNX5bPGl9he8oa-pp4CKzf-J8cEQfbwl3l43Ag=s1200-k-no",
+        "type": "interior"
+      }
+    ]
+  },
+  {
+    "id": 105,
+
+    "slug": "little-yellow-door",
+
+    "name": "The Little Yellow Door 小黃門",
+
+    "type": "調酒吧",
+
+    "dist": 1500,
+
+    "addr": "台南市中西區中山路79巷22之64號",
+
+    "phone": "",
+
+    "lat": 22.9947,
+    "lng": 120.2072,
+
+    "gmap": "https://maps.google.com/?cid=1647428817858047572",
+
+    "rating": 4.7,
+
+    "price": "$$",
+
+    "beer": false,
+
+    "reservation": true,
+
+    "recommendScore": 9.0,
+
+    "groupSize": [2, 3, 4],
+
+    "drinkFriendly": true,
+
+    "lateNight": true,
+
+    "desc": "藏在巷弄夾層裡的秘密調酒吧，「找門」本身就是一種樂趣。吧台手功力扎實、調酒創意豐富，還有甜點。週末常滿，強烈建議預約。週二公休。",
+
+    "drinks": [
+      "創意雞尾酒",
+      "水果調酒",
+      "經典特調",
+      "甜點搭配款"
+    ],
+
+    "tags": [
+      "調酒",
+      "隱藏酒吧",
+      "巷弄秘境",
+      "甜點",
+      "需預約",
+      "網美空間"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZN57H8VplepSDYUGvJW8sDZJ1AB-EFFaKZMEYFXcDvfHJSOdODkiX7AE-nv5B-K4KnulzceWvAKrh5QIvOIExdngEvih6xSmrky7sl_1Aw2g3cN2JaQ3pOqXSfa9wmxqzurfY-By1Cgcv5_=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZOUZdarLMw8aJpp0gH8Up2BpYJP86s0laoiIO48PEOAnCI7OXPKvMZvbk88cQqt8AULhpS80g5mRMKwPIW9ol2AqV87ycifY1mcdwvH-pwXJYjhhDZ65i_xIoezo3MPr-kuMl_wBgamRBN8iL4SrWDhXg=s1200-k-no",
+        "type": "interior"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMaAlXVo1SY65qWjwWb3MZTveMuG71airuNUePec6tucemEeW_0K5oulNsjXpH3hIEYFhioa57J7yEdTfQtEge7G2fMbK1-i5CibBOEysgZ_rrE4q2uBRHYwjNVb04UDJI-kXTeIAwVzJkVFJCdFys3Q=s1200-k-no",
+        "type": "drink"
+      }
+    ]
+  },
+  {
+    "id": 106,
+
+    "slug": "182beer-bar",
+
+    "name": "182beer bar",
+
+    "type": "精釀啤酒吧",
+
+    "dist": 2000,
+
+    "addr": "台南市中西區新美街182號",
+
+    "phone": "0911-031-789",
+
+    "lat": 22.9976,
+    "lng": 120.2014,
+
+    "gmap": "https://maps.google.com/?cid=7587082174333771175",
+
+    "rating": 5.0,
+
+    "price": "$$",
+
+    "beer": true,
+
+    "reservation": false,
+
+    "recommendScore": 9.4,
+
+    "groupSize": [2, 3, 4, 5],
+
+    "drinkFriendly": true,
+
+    "lateNight": false,
+
+    "desc": "藏在藝廊後方的精釀啤酒吧，穿過白色藝廊才找得到入口。6款台灣精釀輪替生啤、百款瓶罐裝啤酒，老闆 Jack 會英文，啤酒知識豐富。週三公休，週二僅開到11點。",
+
+    "drinks": [
+      "台灣精釀生啤（6款輪替）",
+      "稀有進口瓶裝啤酒",
+      "罐裝精釀啤酒",
+      "搭配 New York style 披薩"
+    ],
+
+    "tags": [
+      "精釀啤酒",
+      "台灣本土精釀",
+      "藝廊酒吧",
+      "生啤",
+      "老闆親切",
+      "英文OK"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPoZSjqF8A7mzHXjgkiUaXEIj8AUUOoEtY6BtzLBAOpUC9vu-wPbRjvBb-RoEZJQRIAgjofBLYkJ5qFQTPk5laMWrtLT29n0QQB-TsFaRSZ9NsRcae34nYdRhnnrV0uJ0Bh_Q_-JNwabZnYOQ=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMODqk7CPgdePj9zc4p9hFNqLMjN1-aedIgo9cl-pD4gAaC6Hp6AjRXi4CgtLKkJwXvlt1NESs9aiT7MwjSeIG-eyVeLTNQ8CSxVhPG1ILnYPBxgCFX9ggLGo6cIN6JyEb4uWmC7qVjfPO-=s1200-k-no",
+        "type": "interior"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPjhdq4-leGw2AAw45RyCchDLHZoyWw-7SuZXX_HoOp1iEk-4qMCERp73gdRIsgaI4bqxCXnP1q5ILdYjkVUFKv4uG8abGHWXDm-Nsa9emL8MHwZBrJ41J3juCoWIz4GFjDDhFlSILGNoqeRi_hU8YK=s1200-k-no",
+        "type": "interior"
+      }
+    ]
+  },
+  {
+    "id": 107,
+
+    "slug": "sparrow-brewing",
+
+    "name": "Sparrow Brewing",
+
+    "type": "精釀啤酒廠酒吧",
+
+    "dist": 2000,
+
+    "addr": "台南市中西區國華街三段93號",
+
+    "phone": "06-222-5885",
+
+    "lat": 22.9957,
+    "lng": 120.1981,
+
+    "gmap": "https://maps.google.com/?cid=9901385702865192731",
+
+    "rating": 4.5,
+
+    "price": "$$",
+
+    "beer": true,
+
+    "reservation": false,
+
+    "recommendScore": 8.7,
+
+    "groupSize": [2, 3, 4],
+
+    "drinkFriendly": true,
+
+    "lateNight": false,
+
+    "desc": "台南在地精釀啤酒廠，自釀約10款輪替生啤，包含 Lager、IPA、Ale 等風格。酒吧風格小巧親切，週六下午3點就開，最晚開到凌晨1點。外帶食物可帶入享用。",
+
+    "drinks": [
+      "自釀 Lager（台南桶）",
+      "自釀 IPA",
+      "自釀 Ale",
+      "季節限定款"
+    ],
+
+    "tags": [
+      "自釀精釀啤酒",
+      "Brewpub",
+      "台南在地品牌",
+      "生啤",
+      "可外帶食物入場"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZNxdRy330UHaJbQPHQyO9tux0yG8OgdfNdtLmxW1t1S7ZmyBmAlwqRMERnxZpPQzEWZ3HxUyAkjNgxjP9IMs2Tpb6W_RwEgtG7hmjG0ZBVU_BSN4b0zqzupYvCnPIy0t3qZ16obhev8V9SOyRY=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZNSi6yZ7C-W7hJifLUu6tSyNOJCmI_jvMNg1BFGejI5NT5gYDTJ4tyJ71nT4Ol8kvuoK_Q1N9F5ePGmeBRr6Ma8MPZ_FonBx283wqWYXI7d4KiIMizV8CntWB6pU-TE0ZMLpYqf2LW1c-g=s1200-k-no",
+        "type": "drink"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPAFGvDvAwnzPID6Km5Hqs1itI8R1GvxrG_IsMGaakebb2uNwgDtDz3KU6zrV_F2NrBAfgRWQRhDQH1ZpZerphXXo-lX6xRS1VXKCKph38BUw8Kbj93AxBkxk_X33rmbv5YZO3CGxLeW0BdM7BjBrm2Aw=s1200-k-no",
+        "type": "interior"
+      }
+    ]
+  },
+  {
+    "id": 108,
+
+    "slug": "tongoh-craft-beer",
+
+    "name": "東二精釀啤酒吧 Tongoh",
+
+    "type": "精釀啤酒吧",
+
+    "dist": 2000,
+
+    "addr": "台南市中西區保安路57巷7號",
+
+    "phone": "0906-065-258",
+
+    "lat": 22.9901,
+    "lng": 120.1963,
+
+    "gmap": "https://maps.google.com/?cid=7108261808136464484",
+
+    "rating": 4.8,
+
+    "price": "$$",
+
+    "beer": true,
+
+    "reservation": false,
+
+    "recommendScore": 9.2,
+
+    "groupSize": [2, 3, 4, 5],
+
+    "drinkFriendly": true,
+
+    "lateNight": true,
+
+    "desc": "戶外串燈露台搭配木質溫暖內裝，氛圍如同朋友的小木屋。老闆娘親切熱情，會幫你依口味推薦啤酒，還有炸薯條下酒。週一二公休。",
+
+    "drinks": [
+      "精釀生啤（多款輪替）",
+      "韓式風格啤酒",
+      "季節限定精釀",
+      "搭配炸薯條"
+    ],
+
+    "tags": [
+      "精釀啤酒",
+      "露天座位",
+      "氛圍佳",
+      "老闆親切",
+      "聚會",
+      "宵夜"
+    ],
+
+    "images": [
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZNQPF9nlxJEYIKWgKTtYZyO8zCa5qioC26f88Gzg-_039EnM71snqappeS7BmUD2Tnhg9mXyjAliMldo6kCz_Yxzml9p4HH8YEgFBlPGdSTQ5yOlT_lrWx_nqnqLgrJxG05HUUtKWaUNbPg1A=s1200-k-no",
+        "type": "cover"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZNp7w3rGjEiaPCpi-j28Jh7P0NNmMhIxROW6ASFDAyQ1CfIBjc3EEYeCiR9Xhw2w9J7_zFz0VFPVV8adjU3AMGxTj964mkFeZp_wTfpJlWPRdu3_4Kh_ghsUJnNK4_-X0qfhjDeyDCnnUnQcw=s1200-k-no",
+        "type": "interior"
+      },
+      {
+        "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZM-IcSGXPD70xuVgj80KTc73TR1Bwh_wn8Xv8RFUZfjPqCDorsXxzScB4WOIHZr8N8q_mh-bPwtGaouLG47p6KkUSv_e4tZJcN-R3b1cwV9b7S7LCWz40RU7eVcCgLPkZHb2ZtVRpqF4NwmrQ=s1200-k-no",
+        "type": "outdoor"
+      }
+    ]
+  }
+]
