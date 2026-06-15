@@ -1,6 +1,7 @@
 let places = [];        // 儲存從 json 讀取進來的資料
+let pubs = [];          // 儲存 PUB 資料
 let selectedCart = [];  // 儲存選中店家的 Array (最多3間)
-let map, markersGroup;
+let map, markersGroup, pubMarkersGroup;
 let userMarker = null;
 let focusedId = null;
 
@@ -18,6 +19,7 @@ function initMap() {
     }).addTo(map);
 
     markersGroup = L.layerGroup().addTo(map);
+    pubMarkersGroup = L.layerGroup().addTo(map);
 
     // 定位按鈕
     const LocateControl = L.Control.extend({
@@ -49,8 +51,9 @@ function loadData() {
     Promise.all([
         fetch('data/data.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); }),
         fetch('data/order.json').then(r => r.json()).catch(() => null),
+        fetch('data/pubs.json').then(r => r.json()).catch(() => []),
     ])
-    .then(([data, order]) => {
+    .then(([data, order, pubsData]) => {
         if (order) {
             places = [...data].sort((a, b) => {
                 const ia = order.indexOf(a.id);
@@ -62,7 +65,9 @@ function loadData() {
         } else {
             places = data;
         }
+        pubs = pubsData;
         renderMarkers();
+        renderPubMarkers();
         renderList();
     })
     .catch(error => {
@@ -110,7 +115,30 @@ function renderMarkers() {
     });
 }
 
-// 4. 渲染左側餐廳清單 UI
+// 4. 渲染 PUB 地圖標記（菱形紫色）
+function renderPubMarkers() {
+    pubMarkersGroup.clearLayers();
+    pubs.forEach(pub => {
+        const icon = L.divIcon({
+            className: '',
+            html: '<div class="pub-marker-dot"></div>',
+            iconSize: [18, 18],
+            iconAnchor: [9, 9],
+            popupAnchor: [0, -9]
+        });
+        const marker = L.marker([pub.lat, pub.lng], { icon });
+        marker.bindPopup(`
+            <div class="text-zinc-900 p-1">
+                <strong class="text-sm">${pub.name}</strong><br>
+                <span class="text-xs font-bold" style="color:#7e22ce">[${pub.type}] 距離圓環 ${pub.dist} 公尺</span>
+            </div>
+        `);
+        marker.on('click', () => focusCard(pub.id));
+        pubMarkersGroup.addLayer(marker);
+    });
+}
+
+// 5. 渲染左側餐廳清單 UI
 function renderList() {
     const listContainer = document.getElementById('restaurant-list');
     listContainer.innerHTML = '';
@@ -166,9 +194,61 @@ function renderList() {
         `;
         listContainer.appendChild(card);
     });
+
+    // PUB 區塊
+    if (pubs.length > 0) {
+        const divider = document.createElement('div');
+        divider.className = 'pt-3 pb-1';
+        divider.innerHTML = `
+            <div class="flex items-center gap-2 px-1">
+                <div class="flex-1 h-px bg-zinc-800"></div>
+                <span class="text-[10px] text-zinc-500 tracking-widest font-medium">🍺 PUB 酒吧</span>
+                <div class="flex-1 h-px bg-zinc-800"></div>
+            </div>
+        `;
+        listContainer.appendChild(divider);
+
+        pubs.forEach(pub => {
+            const pubCard = document.createElement('div');
+            pubCard.id = `card-${pub.id}`;
+            pubCard.className = `p-4 rounded border transition-all duration-200 cursor-pointer bg-zinc-900/30 border-zinc-900 hover:border-zinc-800 ${focusedId === pub.id ? 'card-focused' : ''}`;
+
+            pubCard.onclick = (e) => {
+                if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
+                    focusCard(pub.id);
+                    map.panTo([pub.lat, pub.lng]);
+                    pubMarkersGroup.eachLayer(layer => {
+                        if (layer.getLatLng().lat === pub.lat && layer.getLatLng().lng === pub.lng) {
+                            layer.openPopup();
+                        }
+                    });
+                }
+            };
+
+            pubCard.innerHTML = `
+                <div class="flex justify-between items-start gap-2">
+                    <div>
+                        <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium tracking-wider rounded bg-purple-900/30 text-purple-300 border border-purple-800/40 mb-1.5">${pub.type}</span>
+                        <h3 class="text-sm font-medium text-zinc-200">${pub.name}</h3>
+                        <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${pub.dist} 公尺 | ${pub.addr}</p>
+                    </div>
+                    <button onclick="openPreview(${pub.id}); event.stopPropagation();"
+                            class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
+                        👁 預覽
+                    </button>
+                    <a href="${pub.gmap}" target="_blank" onclick="event.stopPropagation();"
+                        class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
+                        🗺 地圖
+                    </a>
+                </div>
+                <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${pub.desc}</p>
+            `;
+            listContainer.appendChild(pubCard);
+        });
+    }
 }
 
-// 5. 控制行程購物車的加入與刪除
+// 6. 控制行程購物車的加入與刪除
 function toggleCart(id) {
     const place = places.find(p => p.id === id);
     const index = selectedCart.findIndex(item => item.id === id);
@@ -305,7 +385,7 @@ let carouselIndex = 0;
 let carouselTotal = 0;
 
 function openPreview(id) {
-    const place = places.find(p => p.id === id);
+    const place = places.find(p => p.id === id) || pubs.find(p => p.id === id);
     if (!place) return;
 
     // 標題
@@ -337,12 +417,17 @@ function openPreview(id) {
         row2 && `<div class="flex flex-wrap items-center">${row2}</div>`,
     ].filter(Boolean).join('');
 
-    // 招牌料理
-    const foods = place.foods || [];
+    // 招牌料理 / 招牌酒款
+    const items = place.foods || place.drinks || [];
+    const isPub = !!place.drinks;
     const foodsBlock = document.getElementById('preview-foods-block');
-    if (foods.length > 0) {
-        document.getElementById('preview-foods').innerHTML = foods.map(f =>
-            `<span class="px-2 py-0.5 text-[10px] rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">${f}</span>`
+    if (items.length > 0) {
+        document.getElementById('preview-items-label').textContent = isPub ? '招牌酒款' : '招牌料理';
+        const itemStyle = isPub
+            ? 'bg-purple-500/10 text-purple-300 border border-purple-500/20'
+            : 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
+        document.getElementById('preview-foods').innerHTML = items.map(f =>
+            `<span class="px-2 py-0.5 text-[10px] rounded ${itemStyle}">${f}</span>`
         ).join('');
         foodsBlock.classList.remove('hidden');
     } else {

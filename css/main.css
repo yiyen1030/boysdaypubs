@@ -72,6 +72,16 @@ body {
     background-color: rgba(59, 130, 246, 0.04) !important;
 }
 
+/* PUB 地圖標記（菱形） */
+.pub-marker-dot {
+    width: 12px;
+    height: 12px;
+    background: #c084fc;
+    border: 2px solid #121212;
+    transform: rotate(45deg);
+    margin: 3px;
+}
+
 /* 使用者定位標記 */
 .user-location-dot {
     width: 16px;
