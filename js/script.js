@@ -120,10 +120,10 @@ function renderPubMarkers() {
     pubMarkersGroup.clearLayers();
     pubs.forEach(pub => {
         const circle = L.circleMarker([pub.lat, pub.lng], {
-            radius: 9,
+            radius: 6,
             fillColor: '#c084fc',
             color: '#121212',
-            weight: 4,
+            weight: 2,
             opacity: 1,
             fillOpacity: 0.95
         });
