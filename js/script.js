@@ -123,7 +123,7 @@ function renderPubMarkers() {
             radius: 9,
             fillColor: '#c084fc',
             color: '#121212',
-            weight: 2,
+            weight: 4,
             opacity: 1,
             fillOpacity: 0.95
         });
