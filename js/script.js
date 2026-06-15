@@ -119,22 +119,22 @@ function renderMarkers() {
 function renderPubMarkers() {
     pubMarkersGroup.clearLayers();
     pubs.forEach(pub => {
-        const icon = L.divIcon({
-            className: '',
-            html: '<div class="pub-marker-dot"></div>',
-            iconSize: [18, 18],
-            iconAnchor: [9, 9],
-            popupAnchor: [0, -9]
+        const circle = L.circleMarker([pub.lat, pub.lng], {
+            radius: 9,
+            fillColor: '#c084fc',
+            color: '#121212',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.95
         });
-        const marker = L.marker([pub.lat, pub.lng], { icon });
-        marker.bindPopup(`
+        circle.bindPopup(`
             <div class="text-zinc-900 p-1">
                 <strong class="text-sm">${pub.name}</strong><br>
                 <span class="text-xs font-bold" style="color:#7e22ce">[${pub.type}] 距離圓環 ${pub.dist} 公尺</span>
             </div>
         `);
-        marker.on('click', () => focusCard(pub.id));
-        pubMarkersGroup.addLayer(marker);
+        circle.on('click', () => focusCard(pub.id));
+        pubMarkersGroup.addLayer(circle);
     });
 }
 
