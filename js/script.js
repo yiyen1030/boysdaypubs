@@ -209,9 +209,15 @@ function renderList() {
         listContainer.appendChild(divider);
 
         pubs.forEach(pub => {
+            const isSelected = selectedCart.some(item => item.id === pub.id);
+
             const pubCard = document.createElement('div');
             pubCard.id = `card-${pub.id}`;
-            pubCard.className = `p-4 rounded border transition-all duration-200 cursor-pointer bg-zinc-900/30 border-zinc-900 hover:border-zinc-800 ${focusedId === pub.id ? 'card-focused' : ''}`;
+            pubCard.className = `p-4 rounded border transition-all duration-200 cursor-pointer ${
+                isSelected
+                ? 'bg-zinc-900/80 border-amber-500/50 shadow-md shadow-amber-500/5'
+                : 'bg-zinc-900/30 border-zinc-900 hover:border-zinc-800'
+            } ${focusedId === pub.id ? 'card-focused' : ''}`;
 
             pubCard.onclick = (e) => {
                 if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'A') {
@@ -232,6 +238,14 @@ function renderList() {
                         <h3 class="text-sm font-medium text-zinc-200">${pub.name}</h3>
                         <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${pub.dist} 公尺 | ${pub.addr}</p>
                     </div>
+                    <button onclick="toggleCart(${pub.id}); event.stopPropagation();"
+                            class="text-xs px-2.5 py-1 rounded transition border whitespace-nowrap ${
+                                isSelected
+                                ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20'
+                                : 'border-zinc-800 text-zinc-400 hover:bg-zinc-800'
+                            }">
+                        ${isSelected ? '✓ 已加入' : '+ 行程'}
+                    </button>
                     <button onclick="openPreview(${pub.id}); event.stopPropagation();"
                             class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
                         👁 預覽
@@ -250,7 +264,7 @@ function renderList() {
 
 // 6. 控制行程購物車的加入與刪除
 function toggleCart(id) {
-    const place = places.find(p => p.id === id);
+    const place = places.find(p => p.id === id) || pubs.find(p => p.id === id);
     const index = selectedCart.findIndex(item => item.id === id);
 
     if (index > -1) {
