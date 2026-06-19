@@ -198,13 +198,9 @@ function renderList() {
     // PUB 區塊
     if (pubs.length > 0) {
         const divider = document.createElement('div');
-        divider.className = 'pt-3 pb-1';
+        divider.className = 'mt-3 mx-0 px-4 py-2.5 bg-zinc-800/60 border-y border-zinc-700/50';
         divider.innerHTML = `
-            <div class="flex items-center gap-2 px-1">
-                <div class="flex-1 h-px bg-zinc-800"></div>
-                <span class="text-[10px] text-zinc-500 tracking-widest font-medium">🍺 PUB 酒吧</span>
-                <div class="flex-1 h-px bg-zinc-800"></div>
-            </div>
+            <span class="text-xs text-zinc-400 font-medium tracking-widest">🍺 PUB 酒吧</span>
         `;
         listContainer.appendChild(divider);
 
