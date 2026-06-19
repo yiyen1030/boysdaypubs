@@ -198,7 +198,7 @@ function renderList() {
     // PUB 區塊
     if (pubs.length > 0) {
         const divider = document.createElement('div');
-        divider.className = 'mt-3 mx-0 px-4 py-2.5 bg-zinc-800/60 border-y border-zinc-700/50';
+        divider.className = 'mt-3 px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
         divider.innerHTML = `
             <span class="text-xs text-zinc-400 font-medium tracking-widest">🍺 PUB 酒吧</span>
         `;
