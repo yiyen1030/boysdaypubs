@@ -199,6 +199,7 @@ function renderList() {
     if (pubs.length > 0) {
         const divider = document.createElement('div');
         divider.className = 'mt-3 px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
+        divider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, #52525b 70%)';
         divider.innerHTML = `
             <span class="text-xs text-zinc-400 font-medium tracking-widest">🍺 PUB 酒吧</span>
         `;
