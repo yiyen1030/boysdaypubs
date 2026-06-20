@@ -110,12 +110,6 @@
                 <p hidden><label>不要填這裡<input name="bot-field" /></label></p>
 
                 <div class="space-y-4">
-                    <!-- 店名 -->
-                    <div>
-                        <label class="form-label">店名 <span class="text-red-400">*</span></label>
-                        <input name="storeName" required placeholder="例：3號燒烤美食" class="form-input" />
-                    </div>
-
                     <!-- 類型 -->
                     <div>
                         <label class="form-label">類型 <span class="text-red-400">*</span></label>
@@ -123,6 +117,18 @@
                             <option value="restaurant">餐廳 / 居酒屋</option>
                             <option value="pub">PUB / 酒吧</option>
                         </select>
+                    </div>
+
+                    <!-- Google Map 連結 -->
+                    <div>
+                        <label class="form-label">Google Map 分享連結 <span class="text-red-400">*</span></label>
+                        <input name="gmap" type="url" required placeholder="https://maps.app.goo.gl/..." class="form-input" />
+                    </div>
+
+                    <!-- 店名 -->
+                    <div>
+                        <label class="form-label">店名 <span class="text-red-400">*</span></label>
+                        <input name="storeName" required placeholder="例：3號燒烤美食" class="form-input" />
                     </div>
 
                     <!-- 地址 -->
