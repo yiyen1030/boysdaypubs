@@ -984,5 +984,69 @@
       "type": "food"
     }
   ]
+},
+{
+  "id": 14,
+
+  "slug": "rere-izakaya",
+
+  "name": "樂樂日式本格居酒屋",
+
+  "type": "日式居酒屋",
+
+  "dist": 1150,
+
+  "addr": "700臺南市中西區萬昌里府中街22號",
+
+  "phone": "06-2210253",
+
+  "lat": 22.991517059013997,
+  "lng": 120.20776945386139,
+
+  "gmap": "https://maps.app.goo.gl/EMJToJSfrLNTbSfr9",
+
+  "rating": 4.5,
+
+  "price": "$$",
+
+  "beer": true,
+
+  "reservation": true,
+
+  "recommendScore": 8.5,
+
+  "groupSize": [],
+
+  "drinkFriendly": true,
+
+  "lateNight": true,
+
+  "desc": "溫馨的日式居酒屋，供應壽司和串燒等傳統美食，另有啤酒。",
+
+  "foods": [
+    "綜合生魚片",
+    "明太子玉子燒",
+    "鮭魚軟炒飯",
+    "烤飯糰",
+    "比目魚握壽司",
+    "牛肉串拼盤"
+  ],
+
+  "tags": ["居酒屋", "串燒", "生魚片", "握壽司", "日式料理"],
+
+  "images": [
+    {
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEokVBPri0ljGMfnWR57R4AfrIBqVe8puRaigpzqs-ys3vTJ6FMKmWu4MBbGz3ObuhkUSj_z0fqOoo_x4fCXaU-GPxEa_WBUxJiNxOa5c6peZdx57EFNW6oBMF-Dn_y1zSPrpZh=s1200-k-no",
+      "type": "cover"
+    },
+    {
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHbBB-vksz_25z729RG8l6hhiCWhCkVNNRy-Pcq2_cKg31VdMtdaN84Slh-48F835q62R8L3Jpszq7t73JdlKr5PxLYD5l0jncbEa9A3RKW6pikZ8A_ftJRmPnLWbQ1B8MCmS4JYw=s1200-k-no",
+      "type": "food"
+    },
+    {
+      "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEnaNhswtVlpbF-D9iu6yGOWW5s9i0WJOrLn1fQ96NehSWXyt_NvetQeFsnGr9gFPa4eyPgOtzkRgMpMiaEXeYgI1Z2Y9MmPWZNMzS_4GTp9LbZFuIqIHmis85I3yXhu6TamcE=s1200-k-no",
+      "type": "food"
+    }
+  ]
 }
 ]
