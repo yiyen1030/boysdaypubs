@@ -105,7 +105,7 @@
         </div>
         <div class="flex-1 overflow-y-auto px-5 py-5">
             <p class="text-xs text-zinc-500 mb-5 leading-relaxed">發現了哪裡好玩？填寫以下資訊，讓我們把它加進地圖。</p>
-            <form id="storeRequestForm" name="new-store-request" data-netlify="true" onsubmit="handleFormSubmit(event)">
+            <form id="storeRequestForm" name="new-store-request" data-netlify="true">
                 <input type="hidden" name="form-name" value="new-store-request" />
                 <p hidden><label>不要填這裡<input name="bot-field" /></label></p>
 
@@ -161,7 +161,10 @@
             <div id="form-success" class="hidden text-center py-10 space-y-3">
                 <p class="text-2xl">🍻</p>
                 <p class="text-zinc-200 text-sm font-medium">謝謝你的推薦！</p>
-                <p class="text-zinc-500 text-xs">我們會盡快審核並加入地圖。</p>
+                <p class="text-zinc-500 text-xs">審核通過後將會加入地圖。</p>
+            </div>
+            <div id="form-error" class="hidden mt-4 px-4 py-3 rounded border border-red-500/30 bg-red-500/10 text-red-400 text-xs text-center">
+                送出失敗，請稍後再試。
             </div>
         </div>
     </div>
