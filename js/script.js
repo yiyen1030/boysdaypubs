@@ -491,6 +491,38 @@ function carouselGoTo(index) {
     });
 }
 
+// 推薦表單
+function openForm() {
+    document.getElementById('form-panel').classList.add('open');
+    document.getElementById('form-backdrop').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeForm() {
+    document.getElementById('form-panel').classList.remove('open');
+    document.getElementById('form-backdrop').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+        form.classList.add('hidden');
+        document.getElementById('form-success').classList.remove('hidden');
+    })
+    .catch(() => {
+        alert('送出失敗，請稍後再試。');
+    });
+}
+
 // 網頁載入完成後依序初始化地圖、抓取資料
 window.onload = () => {
     initMap();
