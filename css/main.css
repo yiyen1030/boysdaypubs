@@ -178,12 +178,10 @@ body {
     background: #fbbf24;
 }
 
-/* iOS 安全區域：手機版 Header 頂部避開狀態列 */
-@supports (padding: env(safe-area-inset-top)) {
-    @media (max-width: 767px) {
-        header {
-            padding-top: calc(1.25rem + env(safe-area-inset-top));
-        }
+/* 手機版 Header 頂部讓開 iOS 狀態列 */
+@media (max-width: 767px) {
+    header {
+        padding-top: max(3.5rem, calc(0.75rem + env(safe-area-inset-top, 2.75rem)));
     }
 }
 
