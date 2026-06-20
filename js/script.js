@@ -530,6 +530,11 @@ window.onload = () => {
     document.getElementById('storeRequestForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const form = e.target;
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
         const formData = new FormData(form);
 
         try {
