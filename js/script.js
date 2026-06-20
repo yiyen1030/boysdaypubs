@@ -143,6 +143,14 @@ function renderList() {
     const listContainer = document.getElementById('restaurant-list');
     listContainer.innerHTML = '';
 
+    // 餐廳分隔區塊
+    const restDivider = document.createElement('div');
+    restDivider.id = 'section-restaurant';
+    restDivider.className = 'px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
+    restDivider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, #52525b 70%)';
+    restDivider.innerHTML = `<span class="text-xs text-zinc-400 font-medium tracking-widest">🍽 深夜餐酒</span>`;
+    listContainer.appendChild(restDivider);
+
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
         
@@ -198,6 +206,7 @@ function renderList() {
     // PUB 區塊
     if (pubs.length > 0) {
         const divider = document.createElement('div');
+        divider.id = 'section-pub';
         divider.className = 'mt-3 px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
         divider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, #52525b 70%)';
         divider.innerHTML = `
@@ -489,6 +498,12 @@ function carouselGoTo(index) {
     document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
     });
+}
+
+// 快速捲動至指定區塊
+function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // 推薦表單
