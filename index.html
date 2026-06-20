@@ -20,7 +20,7 @@
     <!-- 左側/上方：主控制面板與餐廳列表 -->
     <div class="w-full md:w-[450px] flex flex-col h-[60vh] md:h-full border-b md:border-b-0 md:border-r border-zinc-800 z-10 bg-zinc-950">
         <!-- Header -->
-        <header class="px-6 py-5 border-b border-zinc-900 flex-shrink-0 flex items-center justify-between gap-3">
+        <header class="px-6 py-5 border-b border-zinc-900 flex-shrink-0 flex items-start justify-between gap-2">
             <div>
                 <h1 class="text-xl font-light tracking-widest text-zinc-100 flex items-center gap-2">
                     <span class="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
@@ -28,17 +28,17 @@
                 </h1>
                 <p class="text-xs text-zinc-500 mt-1">精選 2 公里內深夜餐酒與酒吧．自由串聯今晚行程</p>
             </div>
-            <div class="flex items-center gap-2 flex-shrink-0">
+            <div class="flex items-center gap-1.5 flex-shrink-0">
                 <button onclick="scrollToSection('section-restaurant')" title="餐廳區"
-                    class="w-10 h-10 rounded-lg bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition text-lg flex items-center justify-center">
-                    🍽
+                    class="w-7 h-7 rounded bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition text-sm flex items-center justify-center">
+                    🍷
                 </button>
                 <button onclick="scrollToSection('section-pub')" title="PUB 酒吧區"
-                    class="w-10 h-10 rounded-lg bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition text-lg flex items-center justify-center">
+                    class="w-7 h-7 rounded bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition text-sm flex items-center justify-center">
                     🍺
                 </button>
                 <button onclick="openForm()" title="推薦新店家"
-                    class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/40 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 transition text-2xl flex items-center justify-center leading-none">
+                    class="w-7 h-7 rounded bg-amber-500/10 border border-amber-500/40 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 transition text-lg flex items-center justify-center leading-none">
                     +
                 </button>
             </div>
