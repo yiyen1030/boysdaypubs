@@ -178,10 +178,10 @@ body {
     background: #fbbf24;
 }
 
-/* 手機版 Header 頂部讓開 iOS 狀態列 */
+/* 手機版 Header 頂部讓開 iOS 狀態列（!important 覆蓋 Tailwind .py-5）*/
 @media (max-width: 767px) {
     header {
-        padding-top: max(3.5rem, calc(0.75rem + env(safe-area-inset-top, 2.75rem)));
+        padding-top: max(3.5rem, calc(0.75rem + env(safe-area-inset-top, 3rem))) !important;
     }
 }
 
