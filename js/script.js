@@ -1,9 +1,75 @@
-let places = [];        // 儲存從 json 讀取進來的資料
-let pubs = [];          // 儲存 PUB 資料
-let selectedCart = [];  // 儲存選中店家的 Array (最多3間)
+// ── 全域狀態 ──────────────────────────────────────────────
+let places = [];
+let pubs = [];
+let selectedCart = [];
 let map, markersGroup, pubMarkersGroup;
 let userMarker = null;
 let focusedId = null;
+
+// ── 多語系 ────────────────────────────────────────────────
+let currentLang = 'zh';
+let langData = {};
+
+async function loadLang(lang) {
+    const res = await fetch(`lang/${lang}.json`);
+    langData = await res.json();
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    applyLang();
+}
+
+// 取 UI 字串
+function t(key) {
+    return langData[key] !== undefined ? langData[key] : key;
+}
+
+// 取資料欄位：優先 _de（或其他語系）版本，否則回傳原欄位
+function td(item, field) {
+    if (currentLang !== 'zh') {
+        const localized = item[`${field}_${currentLang}`];
+        if (localized !== undefined) return localized;
+    }
+    return item[field];
+}
+
+function applyLang() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (langData[key] !== undefined) el.textContent = langData[key];
+    });
+    document.title = t('page.title');
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-TW' : 'de';
+    updateLangButtons();
+    updateCartUI();
+    if (places.length > 0 || pubs.length > 0) {
+        renderList();
+        renderMarkers();
+        renderPubMarkers();
+    }
+}
+
+function setLang(lang) {
+    if (lang === currentLang) { closeMenu(); return; }
+    loadLang(lang).then(() => closeMenu());
+}
+
+function updateLangButtons() {
+    const active   = 'border-amber-500/60 text-amber-400 bg-amber-500/10';
+    const inactive = 'border-zinc-700/40 text-zinc-500 hover:text-zinc-300 hover:border-zinc-500';
+    ['zh', 'de'].forEach(l => {
+        const btn = document.getElementById(`lang-btn-${l}`);
+        if (btn) btn.className = `flex-1 py-1 text-xs rounded border transition ${l === currentLang ? active : inactive}`;
+    });
+}
+
+// ── 選單 ──────────────────────────────────────────────────
+function toggleMenu() {
+    document.getElementById('header-menu-dropdown').classList.toggle('hidden');
+}
+
+function closeMenu() {
+    document.getElementById('header-menu-dropdown').classList.add('hidden');
+}
 
 // 1. 初始化地圖 (中心點設在台南東門圓環：22.9895, 120.2122)
 function initMap() {
@@ -11,9 +77,6 @@ function initMap() {
     map = L.map('map', { zoomControl: false }).setView(centerLoc, 15);
     L.control.zoom({ position: 'topright' }).addTo(map);
 
-    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //     attribution: '© OpenStreetMap contributors'
-    // }).addTo(map);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors © CARTO'
     }).addTo(map);
@@ -27,7 +90,7 @@ function initMap() {
         onAdd() {
             const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control locate-btn');
             btn.innerHTML = '📍';
-            btn.title = '定位我的位置';
+            btn.title = t('locate.title');
             L.DomEvent.disableClickPropagation(btn);
             L.DomEvent.on(btn, 'click', locateUser);
             return btn;
@@ -43,7 +106,7 @@ function initMap() {
         weight: 2,
         opacity: 1,
         fillOpacity: 0.8
-    }).addTo(map).bindPopup("<b>臺灣府城-東門城</b>");
+    }).addTo(map).bindPopup(`<b>${t('map.dongmen')}</b>`);
 }
 
 // 2. 使用 Fetch API 非同步讀取 data.json 與 order.json
@@ -73,7 +136,7 @@ function loadData() {
     .catch(error => {
         console.error('讀取店家資料失敗:', error);
         document.getElementById('restaurant-list').innerHTML = `
-            <p class="text-xs text-red-400 p-4">⚠️ 無法載入店家資料，請檢查 data/data.json 格式是否正確。</p>
+            <p class="text-xs text-red-400 p-4">${t('data.error')}</p>
         `;
     });
 }
@@ -83,39 +146,30 @@ function renderMarkers() {
     markersGroup.clearLayers();
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
-        
-        // 既然底圖沒有套用反轉濾鏡，我們直接使用你指定的正確顏色：
-        // 1. 選中時：維持亮眼的琥珀橘 (#f59e0b)
-        // 2. 預設推薦點：直接使用你最想要的溫柔粉紅色 (#eca39d)
         const markerColor = isSelected ? '#f59e0b' : '#eca39d';
 
-        // 使用 L.circleMarker (SVG 渲染)，並將半徑放大到 9
-        // 這樣不僅視覺上更清晰、好點擊，還能完美遮蓋住底圖上原本內建的十字符號！
         const circle = L.circleMarker([place.lat, place.lng], {
-            radius: 9,           // 放大半徑，完美遮罩底圖雜訊
+            radius: 9,
             fillColor: markerColor,
-            color: '#121212',    // 深色邊框，讓粉紅圓點立體感更強
+            color: '#121212',
             weight: 2,
             opacity: 1,
-            fillOpacity: 0.95    // 提高不透明度，確保底圖的 + 號不會透出來
+            fillOpacity: 0.95
         });
 
-        // 將彈出視窗直接綁定在圓圈上
         circle.bindPopup(`
             <div class="text-zinc-900 p-1">
-                <strong class="text-sm">${place.name}</strong><br>
-                <span class="text-xs text-amber-700 font-bold">[${place.type}] 距離圓環 ${place.dist}</span>
+                <strong class="text-sm">${td(place, 'name')}</strong><br>
+                <span class="text-xs text-amber-700 font-bold">[${td(place, 'type')}] ${t('card.dist')} ${place.dist} ${t('unit.meter')}</span>
             </div>
         `);
 
         circle.on('click', () => focusCard(place.id));
-
-        // 將乾淨的圓點加入圖層
         markersGroup.addLayer(circle);
     });
 }
 
-// 4. 渲染 PUB 地圖標記（菱形紫色）
+// 4. 渲染 PUB 地圖標記
 function renderPubMarkers() {
     pubMarkersGroup.clearLayers();
     pubs.forEach(pub => {
@@ -129,8 +183,8 @@ function renderPubMarkers() {
         });
         circle.bindPopup(`
             <div class="text-zinc-900 p-1">
-                <strong class="text-sm">${pub.name}</strong><br>
-                <span class="text-xs font-bold" style="color:#7e22ce">[${pub.type}] 距離圓環 ${pub.dist} 公尺</span>
+                <strong class="text-sm">${td(pub, 'name')}</strong><br>
+                <span class="text-xs font-bold" style="color:#7e22ce">[${td(pub, 'type')}] ${t('card.dist')} ${pub.dist} ${t('unit.meter')}</span>
             </div>
         `);
         circle.on('click', () => focusCard(pub.id));
@@ -148,12 +202,12 @@ function renderList() {
     restDivider.id = 'section-restaurant';
     restDivider.className = 'px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
     restDivider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, rgba(82, 82, 91, .5) 70%)';
-    restDivider.innerHTML = `<span class="text-xs text-zinc-400 font-medium tracking-widest">🍖 深夜餐酒</span>`;
+    restDivider.innerHTML = `<span class="text-xs text-zinc-400 font-medium tracking-widest">${t('section.restaurant')}</span>`;
     listContainer.appendChild(restDivider);
 
     places.forEach(place => {
         const isSelected = selectedCart.some(item => item.id === place.id);
-        
+
         const card = document.createElement('div');
         card.id = `card-${place.id}`;
         card.className = `p-4 rounded border transition-all duration-200 cursor-pointer ${
@@ -163,11 +217,11 @@ function renderList() {
         } ${focusedId === place.id ? 'card-focused' : ''}`;
 
         card.onclick = (e) => {
-            if(e.target.tagName !== 'BUTTON') {
+            if (e.target.tagName !== 'BUTTON') {
                 focusCard(place.id);
                 map.panTo([place.lat, place.lng]);
                 markersGroup.eachLayer(layer => {
-                    if(layer.getLatLng().lat === place.lat && layer.getLatLng().lng === place.lng) {
+                    if (layer.getLatLng().lat === place.lat && layer.getLatLng().lng === place.lng) {
                         layer.openPopup();
                     }
                 });
@@ -177,9 +231,9 @@ function renderList() {
         card.innerHTML = `
             <div class="flex justify-between items-start gap-2">
                 <div>
-                    <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium tracking-wider rounded bg-zinc-800 text-zinc-400 mb-1.5">${place.type}</span>
-                    <h3 class="text-sm font-medium text-zinc-200">${place.name}</h3>
-                    <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${place.dist} | ${place.addr}</p>
+                    <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium tracking-wider rounded bg-zinc-800 text-zinc-400 mb-1.5">${td(place, 'type')}</span>
+                    <h3 class="text-sm font-medium text-zinc-200">${td(place, 'name')}</h3>
+                    <p class="text-xs text-zinc-500 mt-0.5">${t('card.dist')} ${place.dist} ${t('unit.meter')} | ${place.addr}</p>
                 </div>
                 <button onclick="toggleCart(${place.id}); event.stopPropagation();"
                         class="text-xs px-2.5 py-1 rounded transition border whitespace-nowrap ${
@@ -187,18 +241,18 @@ function renderList() {
                             ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20'
                             : 'border-zinc-800 text-zinc-400 hover:bg-zinc-800'
                         }">
-                    ${isSelected ? '✓ 已加入' : '+ 行程'}
+                    ${isSelected ? t('card.added') : t('card.add')}
                 </button>
                 <button onclick="openPreview(${place.id}); event.stopPropagation();"
                         class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
-                    👁 預覽
+                    ${t('card.preview')}
                 </button>
                 <a href="${place.gmap}" target="_blank" onclick="event.stopPropagation();"
                     class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
-                    🗺 地圖
+                    ${t('card.map')}
                 </a>
             </div>
-            <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${place.desc}</p>
+            <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${td(place, 'desc')}</p>
         `;
         listContainer.appendChild(card);
     });
@@ -209,9 +263,7 @@ function renderList() {
         divider.id = 'section-pub';
         divider.className = 'mt-3 px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
         divider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, rgba(82, 82, 91, .5) 70%)';
-        divider.innerHTML = `
-            <span class="text-xs text-zinc-400 font-medium tracking-widest">🍺 PUB 酒吧</span>
-        `;
+        divider.innerHTML = `<span class="text-xs text-zinc-400 font-medium tracking-widest">${t('section.pub')}</span>`;
         listContainer.appendChild(divider);
 
         pubs.forEach(pub => {
@@ -240,9 +292,9 @@ function renderList() {
             pubCard.innerHTML = `
                 <div class="flex justify-between items-start gap-2">
                     <div>
-                        <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium tracking-wider rounded bg-purple-900/30 text-purple-300 border border-purple-800/40 mb-1.5">${pub.type}</span>
-                        <h3 class="text-sm font-medium text-zinc-200">${pub.name}</h3>
-                        <p class="text-xs text-zinc-500 mt-0.5">距離圓環：${pub.dist} 公尺 | ${pub.addr}</p>
+                        <span class="inline-block px-1.5 py-0.5 text-[10px] font-medium tracking-wider rounded bg-purple-900/30 text-purple-300 border border-purple-800/40 mb-1.5">${td(pub, 'type')}</span>
+                        <h3 class="text-sm font-medium text-zinc-200">${td(pub, 'name')}</h3>
+                        <p class="text-xs text-zinc-500 mt-0.5">${t('card.dist')} ${pub.dist} ${t('unit.meter')} | ${pub.addr}</p>
                     </div>
                     <button onclick="toggleCart(${pub.id}); event.stopPropagation();"
                             class="text-xs px-2.5 py-1 rounded transition border whitespace-nowrap ${
@@ -250,18 +302,18 @@ function renderList() {
                                 ? 'border-amber-500/40 text-amber-400 bg-amber-500/10 hover:bg-amber-500/20'
                                 : 'border-zinc-800 text-zinc-400 hover:bg-zinc-800'
                             }">
-                        ${isSelected ? '✓ 已加入' : '+ 行程'}
+                        ${isSelected ? t('card.added') : t('card.add')}
                     </button>
                     <button onclick="openPreview(${pub.id}); event.stopPropagation();"
                             class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
-                        👁 預覽
+                        ${t('card.preview')}
                     </button>
                     <a href="${pub.gmap}" target="_blank" onclick="event.stopPropagation();"
                         class="text-xs px-2.5 py-1 rounded transition border border-zinc-800 text-zinc-400 hover:bg-zinc-800 whitespace-nowrap">
-                        🗺 地圖
+                        ${t('card.map')}
                     </a>
                 </div>
-                <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${pub.desc}</p>
+                <p class="text-xs text-zinc-400 mt-2 line-clamp-2 font-light leading-relaxed">${td(pub, 'desc')}</p>
             `;
             listContainer.appendChild(pubCard);
         });
@@ -277,7 +329,7 @@ function toggleCart(id) {
         selectedCart.splice(index, 1);
     } else {
         if (selectedCart.length >= 3) {
-            alert("為了維持微醺散步的品質，一晚建議安排 2-3 間店就好囉！");
+            alert(t('cart.full'));
             return;
         }
         selectedCart.push(place);
@@ -288,7 +340,7 @@ function toggleCart(id) {
     renderMarkers();
 }
 
-// 6. 清空購物車
+// 7. 清空購物車
 function clearCart() {
     selectedCart = [];
     updateCartUI();
@@ -296,21 +348,24 @@ function clearCart() {
     renderMarkers();
 }
 
-// 7. 更新底部購物車區塊的 UI
+// 8. 更新底部購物車區塊的 UI
 function updateCartUI() {
-    document.getElementById('cart-count').innerText = selectedCart.length;
+    const countEl = document.getElementById('cart-count');
     const cartItemsContainer = document.getElementById('cart-items');
     const routeBtn = document.getElementById('route-btn');
+    if (!cartItemsContainer || !routeBtn) return;
+
+    if (countEl) countEl.innerText = selectedCart.length;
 
     if (selectedCart.length === 0) {
-        cartItemsContainer.innerHTML = `<p class="text-zinc-600 self-center">尚未選擇店家，請從上方列表中加入...</p>`;
+        cartItemsContainer.innerHTML = `<p class="text-zinc-600 self-center">${t('cart.empty')}</p>`;
         routeBtn.disabled = true;
         routeBtn.className = "w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm cursor-not-allowed";
-        routeBtn.innerText = "請先選擇 2-3 間餐廳";
+        routeBtn.innerText = t('cart.route.disabled0');
     } else {
         cartItemsContainer.innerHTML = selectedCart.map(item => `
             <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">
-                ${item.name}
+                ${td(item, 'name')}
                 <span onclick="toggleCart(${item.id})" class="text-zinc-500 hover:text-zinc-300 cursor-pointer font-bold ml-1">×</span>
             </span>
         `).join('');
@@ -318,35 +373,32 @@ function updateCartUI() {
         if (selectedCart.length >= 2) {
             routeBtn.disabled = false;
             routeBtn.className = "w-full py-3 rounded bg-amber-500 text-zinc-950 font-semibold tracking-widest text-sm hover:bg-amber-400 active:scale-[0.99] transition-all cursor-pointer shadow-lg shadow-amber-500/10";
-            routeBtn.innerText = "⚡ 產生今晚微醺路線 (開啟 Google Maps)";
+            routeBtn.innerText = t('cart.route.go');
         } else {
             routeBtn.disabled = true;
             routeBtn.className = "w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm cursor-not-allowed";
-            routeBtn.innerText = "請再選擇 1 間店家";
+            routeBtn.innerText = t('cart.route.disabled1');
         }
     }
 }
 
-// 8. 核心邏輯：動態拼裝 Google Maps Universal URL 並開啟導航
+// 9. 核心邏輯：動態拼裝 Google Maps Universal URL 並開啟導航
 function generateRoute() {
     if (selectedCart.length < 2) return;
 
     const baseUrl = "https://www.google.com/maps/dir/?api=1";
     const origin = encodeURIComponent(selectedCart[0].addr);
     const destination = encodeURIComponent(selectedCart[selectedCart.length - 1].addr);
-    
+
     let waypointsParam = "";
     if (selectedCart.length === 3) {
         waypointsParam = `&waypoints=${encodeURIComponent(selectedCart[1].addr)}`;
     }
 
-    const travelMode = "&travelmode=walking";
-    const finalMapUrl = `${baseUrl}&origin=${origin}&destination=${destination}${waypointsParam}${travelMode}`;
-
-    window.open(finalMapUrl, '_blank');
+    window.open(`${baseUrl}&origin=${origin}&destination=${destination}${waypointsParam}&travelmode=walking`, '_blank');
 }
 
-// 9. 店家卡片 focus
+// 10. 店家卡片 focus
 function focusCard(id) {
     if (focusedId !== null) {
         const prev = document.getElementById(`card-${focusedId}`);
@@ -360,10 +412,10 @@ function focusCard(id) {
     }
 }
 
-// 10. 使用者定位
+// 11. 使用者定位
 function locateUser() {
     if (!navigator.geolocation) {
-        alert('您的瀏覽器不支援定位功能');
+        alert(t('locate.unsupported'));
         return;
     }
     navigator.geolocation.getCurrentPosition(
@@ -381,26 +433,24 @@ function locateUser() {
 
             userMarker = L.marker(latlng, { icon })
                 .addTo(map)
-                .bindPopup('<b>📍 你在這裡</b>');
+                .bindPopup(`<b>${t('locate.here')}</b>`);
 
             map.setView(latlng, 16);
             userMarker.openPopup();
         },
         () => {
-            alert('無法取得位置，請確認已允許定位權限。');
+            alert(t('locate.error'));
         }
     );
 }
 
-// 10. 店家介紹
-function openMap(title,url) {
+// 12. 店家介紹（NanoBox）
+function openMap(title, url) {
     if (!url) return;
-    NanoBox.open(url, {
-        title: title,
-    });
+    NanoBox.open(url, { title });
 }
 
-// 10. Preview Offcanvas
+// 13. Preview Offcanvas
 let carouselIndex = 0;
 let carouselTotal = 0;
 
@@ -408,25 +458,24 @@ function openPreview(id) {
     const place = places.find(p => p.id === id) || pubs.find(p => p.id === id);
     if (!place) return;
 
-    // 標題
-    document.getElementById('preview-title').textContent = place.name;
+    // 標題 & 描述
+    document.getElementById('preview-title').textContent = td(place, 'name');
+    document.getElementById('preview-desc').textContent = td(place, 'desc') || '';
 
-    // 描述
-    document.getElementById('preview-desc').textContent = place.desc || '';
-
-    // 標籤
+    // 標籤列
     const tagsEl = document.getElementById('preview-tags');
-    tagsEl.innerHTML = (place.tags || []).map(tag =>
+    tagsEl.innerHTML = (td(place, 'tags') || []).map(tag =>
         `<span class="px-2 py-0.5 text-[10px] rounded bg-zinc-800 text-zinc-400 border border-zinc-700">${tag}</span>`
     ).join('');
 
     // 基本資訊
     const metaEl = document.getElementById('preview-meta');
     const dot = `<span class="mx-1.5 text-zinc-700">·</span>`;
+    const distText = place.dist ? t('preview.dist').replace('{n}', place.dist) : null;
     const row1 = [
-        place.rating && `<span>⭐ ${place.rating} 分</span>`,
+        place.rating && `<span>⭐ ${place.rating}${t('preview.rating.suffix')}</span>`,
         place.price  && `<span>💰 ${place.price}</span>`,
-        place.dist   && `<span>📏 距東門城 ${place.dist} 公尺</span>`,
+        distText     && `<span>📏 ${distText}</span>`,
     ].filter(Boolean).join(dot);
     const row2 = [
         place.addr  && `<span>📍 ${place.addr}</span>`,
@@ -438,11 +487,11 @@ function openPreview(id) {
     ].filter(Boolean).join('');
 
     // 招牌料理 / 招牌酒款
-    const items = place.foods || place.drinks || [];
     const isPub = !!place.drinks;
+    const items = td(place, isPub ? 'drinks' : 'foods') || [];
     const foodsBlock = document.getElementById('preview-foods-block');
     if (items.length > 0) {
-        document.getElementById('preview-items-label').textContent = isPub ? '招牌酒款' : '招牌料理';
+        document.getElementById('preview-items-label').textContent = isPub ? t('preview.drinks') : t('preview.foods');
         const itemStyle = isPub
             ? 'bg-purple-500/10 text-purple-300 border border-purple-500/20'
             : 'bg-amber-500/10 text-amber-400 border border-amber-500/20';
@@ -455,7 +504,7 @@ function openPreview(id) {
     }
 
     // 照片輪播
-    const images = (place.images || []);
+    const images = place.images || [];
     carouselIndex = 0;
     carouselTotal = images.length;
 
@@ -474,7 +523,7 @@ function openPreview(id) {
     document.getElementById('carousel-prev').style.display = noImage ? 'none' : '';
     document.getElementById('carousel-next').style.display = noImage ? 'none' : '';
     if (noImage) {
-        track.innerHTML = `<div class="w-full h-[260px] flex items-center justify-center text-zinc-600 text-sm">尚無照片</div>`;
+        track.innerHTML = `<div class="w-full h-[260px] flex items-center justify-center text-zinc-600 text-sm">${t('preview.noPhoto')}</div>`;
     }
 
     document.getElementById('preview-panel').classList.add('open');
@@ -522,10 +571,18 @@ function closeForm() {
     document.body.style.overflow = '';
 }
 
-// 網頁載入完成後依序初始化地圖、抓取資料
-window.onload = () => {
+// ── 初始化 ────────────────────────────────────────────────
+window.onload = async () => {
+    const savedLang = localStorage.getItem('lang') || 'zh';
+    await loadLang(savedLang);
     initMap();
     loadData();
+
+    // 點選單外部自動關閉
+    document.addEventListener('click', (e) => {
+        const menu = document.getElementById('header-menu');
+        if (menu && !menu.contains(e.target)) closeMenu();
+    });
 
     document.getElementById('storeRequestForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -536,7 +593,6 @@ window.onload = () => {
         }
 
         const formData = new FormData(form);
-
         try {
             await fetch('/', {
                 method: 'POST',

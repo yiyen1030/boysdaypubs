@@ -1,0 +1,60 @@
+{
+  "page.title": "Dongmen Nacht-Genuss-Karte",
+  "header.title": "Dongmen · Nächtliche Genuss-Karte",
+  "header.subtitle": "Ausgewählte Restaurants & Bars im 2-km-Umkreis · Plane deinen Abend frei",
+
+  "menu.restaurants": "Restaurants",
+  "menu.pubs": "PUB & Bars",
+  "menu.recommend": "Lokal empfehlen",
+  "menu.lang": "Sprache",
+
+  "cart.title": "Heutige Tour",
+  "cart.clear": "Leeren",
+  "cart.empty": "Noch kein Lokal ausgewählt. Bitte oben auswählen...",
+  "cart.route.disabled0": "Bitte 2–3 Lokale auswählen",
+  "cart.route.disabled1": "Bitte noch 1 Lokal auswählen",
+  "cart.route.go": "⚡ Route für heute Nacht (Google Maps öffnen)",
+  "cart.full": "Für einen gemütlichen Abend empfehlen wir maximal 3 Stopps!",
+
+  "section.restaurant": "🍖 Restaurants & Izakaya",
+  "section.pub": "🍺 PUB & Bars",
+  "card.dist": "Entfernung:",
+  "unit.meter": "m",
+  "card.add": "+ Tour",
+  "card.added": "✓ Hinzugefügt",
+  "card.preview": "👁 Vorschau",
+  "card.map": "🗺 Karte",
+
+  "preview.foods": "Spezialitäten",
+  "preview.drinks": "Signature Drinks",
+  "preview.noPhoto": "Kein Foto vorhanden",
+  "preview.dist": "{n} m vom Dongmen-Tor",
+  "preview.rating.suffix": " / 5",
+
+  "form.title": "Lokal empfehlen",
+  "form.desc": "Hast du einen Geheimtipp? Fülle das Formular aus, damit wir es auf die Karte setzen.",
+  "form.type": "Typ",
+  "form.type.restaurant": "Restaurant / Izakaya",
+  "form.type.pub": "PUB / Bar",
+  "form.gmap": "Google Maps Link",
+  "form.name": "Name des Lokals",
+  "form.addr": "Adresse",
+  "form.phone": "Telefon",
+  "form.optional": "(optional)",
+  "form.intro": "Kurzbeschreibung / Empfehlung",
+  "form.contact": "Deine Kontaktdaten",
+  "form.submit": "Empfehlung senden",
+  "form.success.msg": "Danke für deine Empfehlung!",
+  "form.success.sub": "Nach Prüfung wird es auf die Karte gesetzt.",
+  "form.error": "Senden fehlgeschlagen. Bitte später erneut versuchen.",
+
+  "data.loading": "Daten werden geladen...",
+  "data.error": "⚠️ Daten konnten nicht geladen werden.",
+
+  "locate.title": "Meinen Standort finden",
+  "locate.here": "📍 Du bist hier",
+  "locate.unsupported": "Ihr Browser unterstützt keine Standortfunktion.",
+  "locate.error": "Standort konnte nicht ermittelt werden. Bitte Standortfreigabe prüfen.",
+
+  "map.dongmen": "Dongmen-Tor (Tainan)"
+}

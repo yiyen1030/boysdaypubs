@@ -1,0 +1,60 @@
+{
+  "page.title": "東門城深夜微醺地圖",
+  "header.title": "東門城．深夜微醺地圖",
+  "header.subtitle": "精選 2 公里內深夜餐酒與酒吧．自由串聯今晚行程",
+
+  "menu.restaurants": "餐廳區",
+  "menu.pubs": "PUB 酒吧區",
+  "menu.recommend": "推薦新店家",
+  "menu.lang": "語言",
+
+  "cart.title": "今晚行程",
+  "cart.clear": "清空",
+  "cart.empty": "尚未選擇店家，請從上方列表中加入...",
+  "cart.route.disabled0": "請先選擇 2-3 間餐廳",
+  "cart.route.disabled1": "請再選擇 1 間店家",
+  "cart.route.go": "⚡ 產生今晚微醺路線 (開啟 Google Maps)",
+  "cart.full": "為了維持微醺散步的品質，一晚建議安排 2-3 間店就好囉！",
+
+  "section.restaurant": "🍖 深夜餐酒",
+  "section.pub": "🍺 PUB 酒吧",
+  "card.dist": "距離圓環：",
+  "unit.meter": "公尺",
+  "card.add": "+ 行程",
+  "card.added": "✓ 已加入",
+  "card.preview": "👁 預覽",
+  "card.map": "🗺 地圖",
+
+  "preview.foods": "招牌料理",
+  "preview.drinks": "招牌酒款",
+  "preview.noPhoto": "尚無照片",
+  "preview.dist": "距東門城 {n} 公尺",
+  "preview.rating.suffix": " 分",
+
+  "form.title": "推薦新店家",
+  "form.desc": "發現了哪裡好玩？填寫以下資訊，讓我們把它加進地圖。",
+  "form.type": "類型",
+  "form.type.restaurant": "餐廳 / 居酒屋",
+  "form.type.pub": "PUB / 酒吧",
+  "form.gmap": "Google Map 分享連結",
+  "form.name": "店名",
+  "form.addr": "地址",
+  "form.phone": "電話",
+  "form.optional": "（選填）",
+  "form.intro": "簡介 / 推薦原因",
+  "form.contact": "你的聯絡方式",
+  "form.submit": "送出推薦",
+  "form.success.msg": "謝謝你的推薦！",
+  "form.success.sub": "審核通過後將會加入地圖。",
+  "form.error": "送出失敗，請稍後再試。",
+
+  "data.loading": "資料載入中...",
+  "data.error": "⚠️ 無法載入店家資料，請檢查 data/data.json 格式是否正確。",
+
+  "locate.title": "定位我的位置",
+  "locate.here": "📍 你在這裡",
+  "locate.unsupported": "您的瀏覽器不支援定位功能",
+  "locate.error": "無法取得位置，請確認已允許定位權限。",
+
+  "map.dongmen": "臺灣府城-東門城"
+}

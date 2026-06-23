@@ -24,43 +24,67 @@
             <div>
                 <h1 class="text-xl font-light tracking-widest text-zinc-100 flex items-center gap-2">
                     <span class="inline-block w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                    東門城．深夜微醺地圖
+                    <span data-i18n="header.title">東門城．深夜微醺地圖</span>
                 </h1>
-                <p class="text-xs text-zinc-500 mt-1">精選 2 公里內深夜餐酒與酒吧．自由串聯今晚行程</p>
+                <p class="text-xs text-zinc-500 mt-1" data-i18n="header.subtitle">精選 2 公里內深夜餐酒與酒吧．自由串聯今晚行程</p>
             </div>
-            <div class="flex items-center gap-1.5 flex-shrink-0">
-                <button onclick="scrollToSection('section-restaurant')" title="餐廳區"
-                    class="w-7 h-7 rounded bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition text-sm flex items-center justify-center">
-                    🍖
+
+            <!-- 選單按鈕 -->
+            <div class="relative flex-shrink-0" id="header-menu">
+                <button id="header-menu-btn" onclick="toggleMenu()"
+                        class="w-8 h-8 rounded bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition flex items-center justify-center text-base">
+                    ☰
                 </button>
-                <button onclick="scrollToSection('section-pub')" title="PUB 酒吧區"
-                    class="w-7 h-7 rounded bg-zinc-800/50 border border-zinc-700/40 text-zinc-400 hover:bg-zinc-700/50 hover:text-zinc-200 transition text-sm flex items-center justify-center">
-                    🍺
-                </button>
-                <button onclick="openForm()" title="推薦新店家"
-                    class="w-7 h-7 rounded bg-amber-500/10 border border-amber-500/40 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 transition text-lg flex items-center justify-center leading-none">
-                    +
-                </button>
+                <div id="header-menu-dropdown"
+                     class="hidden absolute right-0 top-10 w-52 bg-zinc-900 border border-zinc-700/60 rounded-lg shadow-2xl z-50 py-1.5 overflow-hidden">
+                    <button onclick="scrollToSection('section-restaurant'); closeMenu();"
+                            class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-800 transition text-left">
+                        <span>🍖</span>
+                        <span data-i18n="menu.restaurants">餐廳區</span>
+                    </button>
+                    <button onclick="scrollToSection('section-pub'); closeMenu();"
+                            class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-800 transition text-left">
+                        <span>🍺</span>
+                        <span data-i18n="menu.pubs">PUB 酒吧區</span>
+                    </button>
+                    <button onclick="openForm(); closeMenu();"
+                            class="w-full flex items-center gap-3 px-4 py-2.5 text-sm hover:bg-zinc-800 transition text-left">
+                        <span class="text-amber-400">＋</span>
+                        <span class="text-amber-400/80" data-i18n="menu.recommend">推薦新店家</span>
+                    </button>
+                    <div class="border-t border-zinc-800 mx-3 my-1"></div>
+                    <div class="px-4 py-2">
+                        <p class="text-[10px] text-zinc-600 tracking-widest uppercase mb-2" data-i18n="menu.lang">語言</p>
+                        <div class="flex gap-1.5">
+                            <button onclick="setLang('zh')" id="lang-btn-zh"
+                                    class="flex-1 py-1 text-xs rounded border transition border-zinc-700/40 text-zinc-500 hover:text-zinc-300 hover:border-zinc-500">中文</button>
+                            <button onclick="setLang('de')" id="lang-btn-de"
+                                    class="flex-1 py-1 text-xs rounded border transition border-zinc-700/40 text-zinc-500 hover:text-zinc-300 hover:border-zinc-500">Deutsch</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <!-- 餐廳列表區區塊 -->
+        <!-- 餐廳列表區塊 -->
         <div class="flex-1 overflow-y-auto p-4 space-y-3" id="restaurant-list">
-            <p class="text-xs text-zinc-500 p-4">資料載入中...</p>
+            <p class="text-xs text-zinc-500 p-4" data-i18n="data.loading">資料載入中...</p>
         </div>
 
         <!-- 底部吸附：行程購物車 -->
         <div class="p-4 bg-zinc-900 border-t border-zinc-800 flex-shrink-0">
             <div class="flex justify-between items-center mb-3">
-                <span class="text-xs text-zinc-400 tracking-wider">今晚行程 (<span id="cart-count">0</span>/3)</span>
-                <button onclick="clearCart()" class="text-xs text-zinc-500 hover:text-zinc-300 transition">清空</button>
+                <span class="text-xs text-zinc-400 tracking-wider">
+                    <span data-i18n="cart.title">今晚行程</span> (<span id="cart-count">0</span>/3)
+                </span>
+                <button onclick="clearCart()" class="text-xs text-zinc-500 hover:text-zinc-300 transition" data-i18n="cart.clear">清空</button>
             </div>
             <div id="cart-items" class="flex gap-2 mb-3 min-h-[32px] overflow-x-auto pb-1 text-xs">
-                <p class="text-zinc-600 self-center">尚未選擇店家，請從上方列表中加入...</p>
+                <p class="text-zinc-600 self-center" data-i18n="cart.empty">尚未選擇店家，請從上方列表中加入...</p>
             </div>
-            <button id="route-btn" disabled onclick="generateRoute()" 
+            <button id="route-btn" disabled onclick="generateRoute()"
                     class="w-full py-3 rounded bg-zinc-800 text-zinc-500 font-medium tracking-wide text-sm cursor-not-allowed transition-all duration-300">
-                請先選擇 2-3 間餐廳
+                <span data-i18n="cart.route.disabled0">請先選擇 2-3 間餐廳</span>
             </button>
         </div>
     </div>
@@ -89,19 +113,12 @@
 
         <!-- 介紹內容 (可捲動) -->
         <div class="flex-1 overflow-y-auto px-5 py-4 space-y-4">
-            <!-- 標籤列 -->
             <div id="preview-tags" class="flex flex-wrap gap-1.5"></div>
-
-            <!-- 描述 -->
             <p id="preview-desc" class="text-sm text-zinc-300 leading-relaxed"></p>
-
-            <!-- 招牌料理 -->
             <div id="preview-foods-block" class="hidden">
-                <p id="preview-items-label" class="text-xs text-zinc-500 tracking-wider mb-2">招牌料理</p>
+                <p id="preview-items-label" class="text-xs text-zinc-500 tracking-wider mb-2"></p>
                 <div id="preview-foods" class="flex flex-wrap gap-1.5"></div>
             </div>
-
-            <!-- 基本資訊 -->
             <div id="preview-meta" class="text-xs text-zinc-400 space-y-1.5 pt-2 border-t border-zinc-800"></div>
         </div>
     </div>
@@ -110,11 +127,11 @@
     <div id="form-backdrop" onclick="closeForm()"></div>
     <div id="form-panel">
         <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800 flex-shrink-0">
-            <span class="text-sm font-medium text-zinc-200 tracking-wide">推薦新店家</span>
+            <span class="text-sm font-medium text-zinc-200 tracking-wide" data-i18n="form.title">推薦新店家</span>
             <button onclick="closeForm()" class="text-zinc-500 hover:text-zinc-200 transition text-lg leading-none">✕</button>
         </div>
         <div class="flex-1 overflow-y-auto px-5 py-5">
-            <p class="text-xs text-zinc-500 mb-5 leading-relaxed">發現了哪裡好玩？填寫以下資訊，讓我們把它加進地圖。</p>
+            <p class="text-xs text-zinc-500 mb-5 leading-relaxed" data-i18n="form.desc">發現了哪裡好玩？填寫以下資訊，讓我們把它加進地圖。</p>
             <form id="storeRequestForm" name="new-store-request" data-netlify="true">
                 <input type="hidden" name="form-name" value="new-store-request" />
                 <p hidden><label>不要填這裡<input name="bot-field" /></label></p>
@@ -122,58 +139,79 @@
                 <div class="space-y-4">
                     <!-- 類型 -->
                     <div>
-                        <label class="form-label">類型 <span class="text-red-400">*</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.type">類型</span>
+                            <span class="text-red-400">*</span>
+                        </label>
                         <select name="storeType" required class="form-input">
-                            <option value="restaurant">餐廳 / 居酒屋</option>
-                            <option value="pub">PUB / 酒吧</option>
+                            <option value="restaurant" data-i18n="form.type.restaurant">餐廳 / 居酒屋</option>
+                            <option value="pub" data-i18n="form.type.pub">PUB / 酒吧</option>
                         </select>
                     </div>
 
                     <!-- Google Map 連結 -->
                     <div>
-                        <label class="form-label">Google Map 分享連結 <span class="text-red-400">*</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.gmap">Google Map 分享連結</span>
+                            <span class="text-red-400">*</span>
+                        </label>
                         <input name="gmap" type="url" required placeholder="https://maps.app.goo.gl/..." class="form-input" />
                     </div>
 
                     <!-- 店名 -->
                     <div>
-                        <label class="form-label">店名 <span class="text-red-400">*</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.name">店名</span>
+                            <span class="text-red-400">*</span>
+                        </label>
                         <input name="storeName" required placeholder="例：3號燒烤美食" class="form-input" />
                     </div>
 
                     <!-- 地址 -->
                     <div>
-                        <label class="form-label">地址 <span class="text-red-400">*</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.addr">地址</span>
+                            <span class="text-red-400">*</span>
+                        </label>
                         <input name="address" required placeholder="台南市東區⋯" class="form-input" />
                     </div>
 
                     <!-- 電話 -->
                     <div>
-                        <label class="form-label">電話 <span class="text-zinc-600">（選填）</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.phone">電話</span>
+                            <span class="text-zinc-600" data-i18n="form.optional">（選填）</span>
+                        </label>
                         <input name="phone" type="tel" placeholder="例：06-123-4567" class="form-input" />
                     </div>
 
                     <!-- 簡介 -->
                     <div>
-                        <label class="form-label">簡介 / 推薦原因 <span class="text-zinc-600">（選填）</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.intro">簡介 / 推薦原因</span>
+                            <span class="text-zinc-600" data-i18n="form.optional">（選填）</span>
+                        </label>
                         <textarea name="description" rows="4" placeholder="為什麼推薦這間？有什麼招牌菜或特色⋯" class="form-input resize-none"></textarea>
                     </div>
 
                     <!-- 聯絡方式 -->
                     <div>
-                        <label class="form-label">你的聯絡方式 <span class="text-zinc-600">（選填）</span></label>
+                        <label class="form-label">
+                            <span data-i18n="form.contact">你的聯絡方式</span>
+                            <span class="text-zinc-600" data-i18n="form.optional">（選填）</span>
+                        </label>
                         <input name="contact" placeholder="Line ID / Email / 電話" class="form-input" />
                     </div>
 
-                    <button type="submit" class="form-submit">送出推薦</button>
+                    <button type="submit" class="form-submit" data-i18n="form.submit">送出推薦</button>
                 </div>
             </form>
             <div id="form-success" class="hidden text-center py-10 space-y-3">
                 <p class="text-2xl">🍻</p>
-                <p class="text-zinc-200 text-sm font-medium">謝謝你的推薦！</p>
-                <p class="text-zinc-500 text-xs">審核通過後將會加入地圖。</p>
+                <p class="text-zinc-200 text-sm font-medium" data-i18n="form.success.msg">謝謝你的推薦！</p>
+                <p class="text-zinc-500 text-xs" data-i18n="form.success.sub">審核通過後將會加入地圖。</p>
             </div>
-            <div id="form-error" class="hidden mt-4 px-4 py-3 rounded border border-red-500/30 bg-red-500/10 text-red-400 text-xs text-center">
+            <div id="form-error" class="hidden mt-4 px-4 py-3 rounded border border-red-500/30 bg-red-500/10 text-red-400 text-xs text-center" data-i18n="form.error">
                 送出失敗，請稍後再試。
             </div>
         </div>
