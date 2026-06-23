@@ -1,49 +1,44 @@
 [
   {
     "id": 101,
-
     "slug": "chuanfa-bar",
-
     "name": "泉發酒吧",
-
+    "name_de": "Quanfa Bar",
     "type": "精釀啤酒吧",
-
+    "type_de": "Belgische Craft-Beer-Bar",
     "dist": 500,
-
     "addr": "台南市東區東門路一段65號",
-
     "phone": "",
-
     "lat": 22.9887,
     "lng": 120.2129,
-
     "gmap": "https://maps.google.com/?cid=6501758958625466445",
-
     "rating": 4.9,
-
     "price": "$$",
-
     "beer": true,
-
     "reservation": false,
-
     "recommendScore": 9.5,
-
-    "groupSize": [2, 3, 4, 5],
-
+    "groupSize": [
+      2,
+      3,
+      4,
+      5
+    ],
     "drinkFriendly": true,
-
     "lateNight": true,
-
     "desc": "東門路上的比利時精釀啤酒專門酒吧，老闆 Vincent 親切健談，知識豐富，來者如友。店內氛圍復古溫馨，適合聚餐後小酌繼攤，週四至週日才營業（8pm–1am）。",
-
+    "desc_de": "Belgische Craft-Beer-Spezialbar auf der Dongmen-Straße. Inhaber Vincent ist freundlich, redselig und bierkundig – Gäste werden wie Freunde empfangen. Gemütlich-nostalgisches Ambiente. Geöffnet Do–So, 20–1 Uhr.",
     "drinks": [
       "比利時修道院啤酒",
       "季節限定精釀生啤",
       "比利時白啤",
       "Trappist 系列"
     ],
-
+    "drinks_de": [
+      "Belgisches Klosterbier",
+      "Saisonales Craft-Bier vom Fass",
+      "Belgisches Weizenbier",
+      "Trappist-Serie"
+    ],
     "tags": [
       "精釀啤酒",
       "比利時啤酒",
@@ -53,7 +48,15 @@
       "宵夜",
       "小酌"
     ],
-
+    "tags_de": [
+      "Craft Beer",
+      "Belgisches Bier",
+      "Bar",
+      "Freundlicher Wirt",
+      "Treffen",
+      "Spätimbiss",
+      "Gemütlich"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMqxOOWjcrOuZFvBl1a4QDlx5OV5gMPmMUMhRh7Gd5YjZTmOknKPCBd9WT2Y0KZ45a2mAdFFYjRnL4MuygS4nXmAdpDXABjZ2FUGbITUQ3maIOahiPtJvazu-64NVqK40TB78rF_Bww6FFnpg=s1200-k-no",
@@ -75,49 +78,43 @@
   },
   {
     "id": 102,
-
     "slug": "bar-alter",
-
     "name": "Bar Alter",
-
+    "name_de": "Bar Alter",
     "type": "調酒吧",
-
+    "type_de": "Cocktailbar",
     "dist": 550,
-
     "addr": "台南市東區東門路一段22號",
-
     "phone": "06-215-0502",
-
     "lat": 22.9884,
     "lng": 120.2122,
-
     "gmap": "https://maps.google.com/?cid=10288598319252486623",
-
     "rating": 4.6,
-
     "price": "$$$",
-
     "beer": false,
-
     "reservation": true,
-
     "recommendScore": 9.1,
-
-    "groupSize": [2, 3, 4],
-
+    "groupSize": [
+      2,
+      3,
+      4
+    ],
     "drinkFriendly": true,
-
     "lateNight": true,
-
     "desc": "台南設計感最強的調酒吧之一，概念菜單獨樹一格，吧台手功力深厚。空間融合台式傳統與現代都會風格，週四至六開到清晨5點，建議事先預約。",
-
+    "desc_de": "Eine der designstärksten Cocktailbars Tainans mit einzigartigem Konzeptmenü und talentierten Bartendern. Raum vereint taiwanesische Tradition und Stadtflair. Do–Sa bis 5 Uhr. Reservierung empfohlen.",
     "drinks": [
       "創意特調雞尾酒",
       "墨西哥辣椒龍舌蘭特調",
       "季節限定調酒",
       "威士忌精選"
     ],
-
+    "drinks_de": [
+      "Kreative Signature-Cocktails",
+      "Jalapeño-Tequila-Spezial",
+      "Saisonale Cocktails",
+      "Whisky-Auswahl"
+    ],
     "tags": [
       "調酒",
       "雞尾酒",
@@ -126,7 +123,14 @@
       "需預約",
       "高質感"
     ],
-
+    "tags_de": [
+      "Cocktails",
+      "Signature Drinks",
+      "Designlokal",
+      "Late-Night-Bar",
+      "Reservierung erforderlich",
+      "Hochwertig"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGyj0frEOZf5FGcctR51njygaG-JnaOj_Uid31dv4702cIu_iRbG5JJYdbDdUuVx7KgEnKkeEo_tFGDVoKsgh24MZKejJ-2oKFzJtiC_MkWSbAyDJHikMP9ZgJ1-LaTwFqDPDt0Uw=s1200-k-no",
@@ -144,48 +148,41 @@
   },
   {
     "id": 103,
-
     "slug": "dirty-rogers-superbar",
-
     "name": "DIRTY ROGER'S SUPERBAR",
-
+    "name_de": "DIRTY ROGER'S SUPERBAR",
     "type": "特色酒吧",
-
+    "type_de": "Themenbar",
     "dist": 800,
-
     "addr": "台南市東區東門路一段141號",
-
     "phone": "06-274-7003",
-
     "lat": 22.9882,
     "lng": 120.2145,
-
     "gmap": "https://maps.google.com/?cid=34995155816648514",
-
     "rating": 4.7,
-
     "price": "$$",
-
     "beer": true,
-
     "reservation": false,
-
     "recommendScore": 8.8,
-
-    "groupSize": [2, 3, 4],
-
+    "groupSize": [
+      2,
+      3,
+      4
+    ],
     "drinkFriendly": true,
-
     "lateNight": true,
-
     "desc": "店內停著一台 Ducati 916 重機，老闆 Roger 是英國賽車手與黑膠唱片迷。來這裡喝啤酒、聊賽車、聽黑膠，每天8pm開到凌晨2點。獨一無二的台南酒吧體驗。",
-
+    "desc_de": "Im Lokal steht eine Ducati 916 – Inhaber Roger ist britischer Rennfahrer und Vinyl-Enthusiast. Bier trinken, Rennsport diskutieren, Vinyl hören. Täglich 20–2 Uhr. Ein einzigartiges Tainan-Erlebnis.",
     "drinks": [
       "瓶裝精釀啤酒",
       "台灣啤酒",
       "進口啤酒"
     ],
-
+    "drinks_de": [
+      "Flaschenbier (Craft)",
+      "Taiwanesisches Bier",
+      "Importiertes Bier"
+    ],
     "tags": [
       "特色主題酒吧",
       "重機主題",
@@ -194,7 +191,14 @@
       "老闆親切",
       "聊天聚會"
     ],
-
+    "tags_de": [
+      "Themenbar",
+      "Motorrad-Theme",
+      "Vinyl-Musik",
+      "Bier",
+      "Freundlicher Wirt",
+      "Gesellig"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFTxSqOrdMzWUdGyq5LF-7WL2lvXOmzrTpvL273y2vOoHCgycavIdKoMjC92T7Gh2-hh1IZD9IVwWkurtjxIbRMoMXooQ1Y593rgqwjrplyXGk5wyNySYW6CjinysrbXsJdfzM=s1200-k-no",
@@ -212,49 +216,45 @@
   },
   {
     "id": 104,
-
     "slug": "bar-horizon",
-
     "name": "Bar Horizon",
-
+    "name_de": "Bar Horizon",
     "type": "調酒吧",
-
+    "type_de": "Cocktailbar",
     "dist": 1500,
-
     "addr": "台南市中西區中山路79巷66號",
-
     "phone": "06-221-8321",
-
     "lat": 22.9944,
     "lng": 120.2068,
-
     "gmap": "https://maps.google.com/?cid=12843535138670510710",
-
     "rating": 5.0,
-
     "price": "$$$",
-
     "beer": false,
-
     "reservation": true,
-
     "recommendScore": 9.6,
-
-    "groupSize": [2, 3, 4, 5, 6],
-
+    "groupSize": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
     "drinkFriendly": true,
-
     "lateNight": true,
-
     "desc": "Google 滿分評價的隱藏酒吧，空間美到每個角落都能拍照。調酒層次豐富，還有令人驚豔的鹹食與甜點（Basque 蛋糕、可露麗）。週二公休，強烈建議預約。",
-
+    "desc_de": "Versteckte Bar mit Google-Bestnote 5,0 – jede Ecke ist fotogen. Vielschichtige Cocktails sowie beeindruckende Snacks und Desserts (Basque-Käsekuchen, Canelés). Di Ruhetag, Reservierung dringend empfohlen.",
     "drinks": [
       "創意特調雞尾酒",
       "Rifu 招牌特調",
       "季節調酒",
       "精選烈酒"
     ],
-
+    "drinks_de": [
+      "Kreative Signature-Cocktails",
+      "Rifu Hauscocktail",
+      "Saisonale Cocktails",
+      "Ausgewählte Spirituosen"
+    ],
     "tags": [
       "調酒",
       "滿分評價",
@@ -264,7 +264,15 @@
       "高質感",
       "聚會"
     ],
-
+    "tags_de": [
+      "Cocktails",
+      "5-Sterne-Bewertung",
+      "Schönes Ambiente",
+      "Desserts",
+      "Versteckte Bar",
+      "Hochwertig",
+      "Treffen"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZMo830RDkIBdzo5o7lR9leq_4LbEpsmQoBEwCK1GMBkzJ1zzirzUg4FSEfgsMOnnVf61KXdlSPYLQUl5JRC6gSGbmXsWlWjUFKzvOGCR-vTEkC1MYipaVv6phMVDEeoe8vBBw8UDTbBqIMR7QdEZKAzSA=s1200-k-no",
@@ -286,49 +294,43 @@
   },
   {
     "id": 105,
-
     "slug": "little-yellow-door",
-
     "name": "The Little Yellow Door 小黃門",
-
+    "name_de": "The Little Yellow Door",
     "type": "調酒吧",
-
+    "type_de": "Cocktailbar",
     "dist": 1500,
-
     "addr": "台南市中西區中山路79巷22之64號",
-
     "phone": "",
-
     "lat": 22.9947,
     "lng": 120.2072,
-
     "gmap": "https://maps.google.com/?cid=1647428817858047572",
-
     "rating": 4.7,
-
     "price": "$$",
-
     "beer": false,
-
     "reservation": true,
-
     "recommendScore": 9.0,
-
-    "groupSize": [2, 3, 4],
-
+    "groupSize": [
+      2,
+      3,
+      4
+    ],
     "drinkFriendly": true,
-
     "lateNight": true,
-
     "desc": "藏在巷弄夾層裡的秘密調酒吧，「找門」本身就是一種樂趣。吧台手功力扎實、調酒創意豐富，還有甜點。週末常滿，強烈建議預約。週二公休。",
-
+    "desc_de": "Geheime Cocktailbar im Zwischengeschoss einer Gasse – die Tür zu finden ist schon das erste Erlebnis. Versierte Bartender, kreative Cocktails und Desserts. Wochenenden oft ausgebucht, Reservierung empfohlen. Di Ruhetag.",
     "drinks": [
       "創意雞尾酒",
       "水果調酒",
       "經典特調",
       "甜點搭配款"
     ],
-
+    "drinks_de": [
+      "Kreative Cocktails",
+      "Frucht-Cocktails",
+      "Klassische Signature Drinks",
+      "Dessert-Begleiter"
+    ],
     "tags": [
       "調酒",
       "隱藏酒吧",
@@ -337,7 +339,14 @@
       "需預約",
       "網美空間"
     ],
-
+    "tags_de": [
+      "Cocktails",
+      "Versteckte Bar",
+      "Geheimtipp in der Gasse",
+      "Desserts",
+      "Reservierung empfohlen",
+      "Instagrammable"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZN57H8VplepSDYUGvJW8sDZJ1AB-EFFaKZMEYFXcDvfHJSOdODkiX7AE-nv5B-K4KnulzceWvAKrh5QIvOIExdngEvih6xSmrky7sl_1Aw2g3cN2JaQ3pOqXSfa9wmxqzurfY-By1Cgcv5_=s1200-k-no",
@@ -355,49 +364,44 @@
   },
   {
     "id": 106,
-
     "slug": "182beer-bar",
-
     "name": "182beer bar",
-
+    "name_de": "182beer bar",
     "type": "精釀啤酒吧",
-
+    "type_de": "Craft-Beer-Bar",
     "dist": 2000,
-
     "addr": "台南市中西區新美街182號",
-
     "phone": "0911-031-789",
-
     "lat": 22.9976,
     "lng": 120.2014,
-
     "gmap": "https://maps.google.com/?cid=7587082174333771175",
-
     "rating": 5.0,
-
     "price": "$$",
-
     "beer": true,
-
     "reservation": false,
-
     "recommendScore": 9.4,
-
-    "groupSize": [2, 3, 4, 5],
-
+    "groupSize": [
+      2,
+      3,
+      4,
+      5
+    ],
     "drinkFriendly": true,
-
     "lateNight": false,
-
     "desc": "藏在藝廊後方的精釀啤酒吧，穿過白色藝廊才找得到入口。6款台灣精釀輪替生啤、百款瓶罐裝啤酒，老闆 Jack 會英文，啤酒知識豐富。週三公休，週二僅開到11點。",
-
+    "desc_de": "Craft-Beer-Bar hinter einer Galerie – der Eingang liegt hinter der weißen Galerie. 6 rotierende Taiwan-Craft-Biere vom Fass, 100+ Flaschen und Dosen. Inhaber Jack spricht Englisch. Mi Ruhetag, Di bis 23 Uhr.",
     "drinks": [
       "台灣精釀生啤（6款輪替）",
       "稀有進口瓶裝啤酒",
       "罐裝精釀啤酒",
       "搭配 New York style 披薩"
     ],
-
+    "drinks_de": [
+      "Taiwan-Craft-Bier vom Fass (6 rotierende Sorten)",
+      "Seltene Import-Flaschenbiere",
+      "Craft-Dosenbier",
+      "Dazu: New-York-Style-Pizza"
+    ],
     "tags": [
       "精釀啤酒",
       "台灣本土精釀",
@@ -406,7 +410,14 @@
       "老闆親切",
       "英文OK"
     ],
-
+    "tags_de": [
+      "Craft Beer",
+      "Taiwanesisches Craft-Bier",
+      "Galerie-Bar",
+      "Fassbier",
+      "Freundlicher Wirt",
+      "Englisch OK"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/place-photos/AJRVUZPoZSjqF8A7mzHXjgkiUaXEIj8AUUOoEtY6BtzLBAOpUC9vu-wPbRjvBb-RoEZJQRIAgjofBLYkJ5qFQTPk5laMWrtLT29n0QQB-TsFaRSZ9NsRcae34nYdRhnnrV0uJ0Bh_Q_-JNwabZnYOQ=s1200-k-no",
@@ -428,49 +439,43 @@
   },
   {
     "id": 107,
-
     "slug": "sparrow-brewing",
-
     "name": "Sparrow Brewing",
-
+    "name_de": "Sparrow Brewing",
     "type": "精釀啤酒廠酒吧",
-
+    "type_de": "Craft-Brauerei & Bar",
     "dist": 2000,
-
     "addr": "台南市中西區國華街三段93號",
-
     "phone": "06-222-5885",
-
     "lat": 22.9957,
     "lng": 120.1981,
-
     "gmap": "https://maps.google.com/?cid=9901385702865192731",
-
     "rating": 4.5,
-
     "price": "$$",
-
     "beer": true,
-
     "reservation": false,
-
     "recommendScore": 8.7,
-
-    "groupSize": [2, 3, 4],
-
+    "groupSize": [
+      2,
+      3,
+      4
+    ],
     "drinkFriendly": true,
-
     "lateNight": false,
-
     "desc": "台南在地精釀啤酒廠，自釀約10款輪替生啤，包含 Lager、IPA、Ale 等風格。酒吧風格小巧親切，週六下午3點就開，最晚開到凌晨1點。外帶食物可帶入享用。",
-
+    "desc_de": "Lokale Tainan-Craft-Brauerei mit ca. 10 rotierenden Fassbieren – Lager, IPA, Ale und mehr. Kleine, gemütliche Bar. Ab Sa 15 Uhr geöffnet, bis 1 Uhr. Externe Speisen erlaubt.",
     "drinks": [
       "自釀 Lager（台南桶）",
       "自釀 IPA",
       "自釀 Ale",
       "季節限定款"
     ],
-
+    "drinks_de": [
+      "Hausgebrautes Lager (Tainan-Fass)",
+      "Hausgebrautes IPA",
+      "Hausgebrautes Ale",
+      "Saisonale Sonderedition"
+    ],
     "tags": [
       "自釀精釀啤酒",
       "Brewpub",
@@ -478,7 +483,13 @@
       "生啤",
       "可外帶食物入場"
     ],
-
+    "tags_de": [
+      "Craft Beer aus eigener Herstellung",
+      "Brewpub",
+      "Tainan-Lokalmarke",
+      "Fassbier",
+      "Externe Speisen erlaubt"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFq9Ymrrhlbb8iBg_2HI8eSwejv43gES1QmTQg8ZNa8svEHwpGXs4oqDuT_ZtZB9RaW4zqlfgiAV9bMWE4zdf0NNci8F-LPkxdZtDv4znyaE-CUp1zQ0NY7_V-ZxgBh6kfsARi1=s1200-k-no",
@@ -496,49 +507,44 @@
   },
   {
     "id": 108,
-
     "slug": "tongoh-craft-beer",
-
     "name": "東二精釀啤酒吧 Tongoh",
-
+    "name_de": "Tongoh Craft Beer Bar",
     "type": "精釀啤酒吧",
-
+    "type_de": "Craft-Beer-Bar",
     "dist": 2000,
-
     "addr": "台南市中西區保安路57巷7號",
-
     "phone": "0906-065-258",
-
     "lat": 22.9901,
     "lng": 120.1963,
-
     "gmap": "https://maps.google.com/?cid=7108261808136464484",
-
     "rating": 4.8,
-
     "price": "$$",
-
     "beer": true,
-
     "reservation": false,
-
     "recommendScore": 9.2,
-
-    "groupSize": [2, 3, 4, 5],
-
+    "groupSize": [
+      2,
+      3,
+      4,
+      5
+    ],
     "drinkFriendly": true,
-
     "lateNight": true,
-
     "desc": "戶外串燈露台搭配木質溫暖內裝，氛圍如同朋友的小木屋。老闆娘親切熱情，會幫你依口味推薦啤酒，還有炸薯條下酒。週一二公休。",
-
+    "desc_de": "Lichterketten-Terrasse und warme Holzeinrichtung wie in einem Freundes-Chalet. Die Wirtin empfiehlt gerne Biere nach Geschmack. Dazu Pommes frites. Mo und Di Ruhetag.",
     "drinks": [
       "精釀生啤（多款輪替）",
       "韓式風格啤酒",
       "季節限定精釀",
       "搭配炸薯條"
     ],
-
+    "drinks_de": [
+      "Craft-Bier vom Fass (wechselnde Auswahl)",
+      "Koreanisch inspirierte Biere",
+      "Saisonale Craft-Sonderedition",
+      "Dazu: Pommes frites"
+    ],
     "tags": [
       "精釀啤酒",
       "露天座位",
@@ -547,7 +553,14 @@
       "聚會",
       "宵夜"
     ],
-
+    "tags_de": [
+      "Craft Beer",
+      "Außenterrasse",
+      "Gemütliche Atmosphäre",
+      "Freundliche Wirtin",
+      "Treffen",
+      "Spätimbiss"
+    ],
     "images": [
       {
         "src": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAG5lJe2WbDsrp7gZDP5bPoua0fTcz4Oa2VE3CIfNEGm-ko3HnGkTy2_RbtA-OI0XDE8WB_Oo9opflhU6sE9hGs3uGiDjQvlYQt_2nA2gZvVw-l2kNA9y6C_HXX8333c9THWpr0=s1200-k-no",
