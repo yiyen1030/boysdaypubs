@@ -147,7 +147,7 @@ function renderList() {
     const restDivider = document.createElement('div');
     restDivider.id = 'section-restaurant';
     restDivider.className = 'px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
-    restDivider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, #52525b 70%)';
+    restDivider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, rgba(82, 82, 91, .5) 70%)';
     restDivider.innerHTML = `<span class="text-xs text-zinc-400 font-medium tracking-widest">🍖 深夜餐酒</span>`;
     listContainer.appendChild(restDivider);
 
@@ -208,7 +208,7 @@ function renderList() {
         const divider = document.createElement('div');
         divider.id = 'section-pub';
         divider.className = 'mt-3 px-4 py-2.5 bg-zinc-800/60 border border-zinc-600 rounded';
-        divider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, #52525b 70%)';
+        divider.style.backgroundImage = 'linear-gradient(30deg, transparent 30%, rgba(82, 82, 91, .5) 70%)';
         divider.innerHTML = `
             <span class="text-xs text-zinc-400 font-medium tracking-widest">🍺 PUB 酒吧</span>
         `;
